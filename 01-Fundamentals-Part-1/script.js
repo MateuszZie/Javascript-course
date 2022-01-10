@@ -8,8 +8,8 @@ let firstNumber = 120.35;
 console.log(firstName);
 console.log(PI);
 console.log(firstNumber);
-*/
-// Data tapes
+
+// Data types
 let javaScriptIsFun = true;
 console.log(true);
 console.log(javaScriptIsFun);
@@ -25,3 +25,18 @@ let PI = 3.1415;
 console.log(typeof PI);
 console.log(null);
 console.log(typeof null);
+*/
+
+// let var const
+let age = 30;
+age = 31;
+
+const birthDate = 1986;
+// birthDate = 1999;
+// const job;
+
+var job = 'cnc';
+job = 'java';
+
+lastName = 'Ziebura';
+console.log(lastName);
