@@ -3,7 +3,7 @@
 let js = 'amazing';
 console.log(20 + 15 + 15);
 let firstName = "Mateusz";
-let PI = 
+let PI =
 let firstNumber = 120.35;
 console.log(firstName);
 console.log(PI);
@@ -25,7 +25,7 @@ let PI = 3.1415;
 console.log(typeof PI);
 console.log(null);
 console.log(typeof null);
-*/
+
 
 // let var const
 let age = 30;
@@ -40,3 +40,28 @@ job = 'java';
 
 lastName = 'Ziebura';
 console.log(lastName);
+*/
+// Basic Operators
+const now = 2022;
+const mateuszAge = now - 1986;
+const sylwiaAge = now - 1977;
+
+console.log(mateuszAge, sylwiaAge);
+
+console.log(mateuszAge * 2, mateuszAge / 2, 2 ** 4);
+
+const firstName = 'Mateusz';
+const lastName = 'Ziebura';
+console.log(firstName + " " + lastName);
+
+let x = 10 + 5;
+x += 5;
+x *= 2;
+x++;
+x--;
+x--;
+console.log(x);
+
+console.log(mateuszAge > sylwiaAge);
+console.log(mateuszAge >= 18);
+console.log(now - 1986 > now - 1977);
