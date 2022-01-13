@@ -65,7 +65,7 @@ console.log(x);
 console.log(mateuszAge > sylwiaAge);
 console.log(mateuszAge >= 18);
 console.log(now - 1986 > now - 1977);
-*/
+
 // Strings
 const firstName = 'Mateusz';
 const job = 'Programer';
@@ -84,5 +84,17 @@ console.log('Some \nmulti \nline');
 
 console.log(`Some
 multi
-line`);
-
+line `);
+*/
+// Type Conversion
+const someYear = '1991';
+console.log(Number(someYear), someYear);
+console.log(Number('lol'));
+console.log(typeof NaN);
+console.log(String(23), 23);
+console.log("I'm " + 23 + ' year old');
+console.log("32" + 5);
+console.log(14 - "5");
+let n = "1" + 1;
+n = n - 1;
+console.log(n);
