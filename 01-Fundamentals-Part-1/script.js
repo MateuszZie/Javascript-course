@@ -40,7 +40,7 @@ job = 'java';
 
 lastName = 'Ziebura';
 console.log(lastName);
-*/
+
 // Basic Operators
 const now = 2022;
 const mateuszAge = now - 1986;
@@ -65,3 +65,24 @@ console.log(x);
 console.log(mateuszAge > sylwiaAge);
 console.log(mateuszAge >= 18);
 console.log(now - 1986 > now - 1977);
+*/
+// Strings
+const firstName = 'Mateusz';
+const job = 'Programer';
+const yearOfBirth = 1986;
+const currentYear = 2022;
+
+const mateusz = "I'm " + firstName + ' a, ' + (currentYear - yearOfBirth) + " year old " + job + "!";
+console.log(mateusz);
+
+const newMateusz = `I'm ${firstName} a, ${currentYear - yearOfBirth} year old ${job}!`;
+console.log(newMateusz);
+
+console.log(`Just a reular string...`);
+
+console.log('Some \nmulti \nline');
+
+console.log(`Some
+multi
+line`);
+
