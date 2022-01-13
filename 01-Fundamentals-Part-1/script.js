@@ -85,7 +85,7 @@ console.log('Some \nmulti \nline');
 console.log(`Some
 multi
 line `);
-*/
+
 // Type Conversion
 const someYear = '1991';
 console.log(Number(someYear), someYear);
@@ -98,3 +98,11 @@ console.log(14 - "5");
 let n = "1" + 1;
 n = n - 1;
 console.log(n);
+*/
+//Equality Operators
+const favorite = Number(prompt("What is your favorite number"));
+
+if (favorite === 8) console.log("8 = 8");
+else if (favorite == '7') console.log("7 = '7'");
+else if (favorite !== 9) console.log(favorite + " is not equal 9");
+else console.log("I'ts ok");
