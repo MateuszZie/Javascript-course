@@ -85,7 +85,7 @@ console.log(friends);
 const mxArray = ["Marcin", 2012, friends];
 
 console.log(mxArray);
-*/
+
 // Basic Array Operations 
 
 const friends = ["Marek", "Jarek", "Zygmunt"];
@@ -112,5 +112,17 @@ console.log(friends.indexOf("Mateusz"));
 
 console.log(friends.includes("Jarek"));
 console.log(friends.includes("Mateusz"));
+*/
+// Objects
+
+const mateusz = {
+    firstName: "Mateusz",
+    lastName: "Ziebura",
+    age: 2022 - 1986,
+    job: "Junior Java Developer",
+    friends: ["Marek", "Jarek", "Zygmunt"]
+};
+
+console.log(mateusz);
 
 
