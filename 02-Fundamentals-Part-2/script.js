@@ -9,8 +9,8 @@ if (passTest) hasDriverLicens = true;
 if (hasDriversLicens) console.log("Test Passed");
 
 const interface = 23445;
-*/
-// Fuctions
+
+// Functions
 
 function logger() {
     console.log("My name is Mateusz");
@@ -35,3 +35,19 @@ console.log(juiceProcesor(6, 4));
 
 const num = Number('25');
 console.log(num);
+*/
+// Functions declaration vs expression
+
+const age1 = calcAge1(1986);
+
+function calcAge1(birthYear) {
+    return 2022 - birthYear;
+}
+
+const calcAge2 = function (birthYear) {
+    return 2022 - birthYear;
+}
+
+const age2 = calcAge2(1986);
+
+console.log(age1, age2);
