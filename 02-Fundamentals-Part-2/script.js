@@ -51,7 +51,7 @@ const calcAge2 = function (birthYear) {
 const age2 = calcAge2(1986);
 
 console.log(age1, age2);
-*/
+
 // Arrow function
 
 const calcAge3 = birthYear => 2022 - birthYear;
@@ -65,3 +65,23 @@ const yearsUntilRetiment = (birthYear, firstName) => {
 }
 
 console.log(yearsUntilRetiment(1986, 'Mateusz'));
+*/
+// Arrays
+
+const friends = ["Marek", "Jarek", "zygmunt"];
+
+const years = new Array(1999, 2000, 2015);
+
+console.log(friends);
+console.log(years);
+
+console.log(friends[0]);
+console.log(years.length);
+console.log(years[years.length - 1]);
+
+friends[1] = "Mateusz";
+console.log(friends);
+
+const mxArray = ["Marcin", 2012, friends];
+
+console.log(mxArray);
