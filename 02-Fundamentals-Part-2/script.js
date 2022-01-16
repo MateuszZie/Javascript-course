@@ -35,7 +35,7 @@ console.log(juiceProcesor(6, 4));
 
 const num = Number('25');
 console.log(num);
-*/
+
 // Functions declaration vs expression
 
 const age1 = calcAge1(1986);
@@ -51,3 +51,17 @@ const calcAge2 = function (birthYear) {
 const age2 = calcAge2(1986);
 
 console.log(age1, age2);
+*/
+// Arrow function
+
+const calcAge3 = birthYear => 2022 - birthYear;
+
+console.log(calcAge3(1986));
+
+const yearsUntilRetiment = (birthYear, firstName) => {
+    const age = 2022 - birthYear;
+    const retairment = 65 - age;
+    return `${firstName} you need still work ${retairment} years before you will go to retairment`;
+}
+
+console.log(yearsUntilRetiment(1986, 'Mateusz'));
