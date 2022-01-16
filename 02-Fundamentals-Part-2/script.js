@@ -65,10 +65,10 @@ const yearsUntilRetiment = (birthYear, firstName) => {
 }
 
 console.log(yearsUntilRetiment(1986, 'Mateusz'));
-*/
+
 // Arrays
 
-const friends = ["Marek", "Jarek", "zygmunt"];
+const friends = ["Marek", "Jarek", "Zygmunt"];
 
 const years = new Array(1999, 2000, 2015);
 
@@ -85,3 +85,32 @@ console.log(friends);
 const mxArray = ["Marcin", 2012, friends];
 
 console.log(mxArray);
+*/
+// Basic Array Operations 
+
+const friends = ["Marek", "Jarek", "Zygmunt"];
+
+const push = friends.push("Mateusz");
+console.log(push);
+console.log(friends);
+console.log(friends.length);
+
+const unshift = friends.unshift("Darek");
+console.log(unshift);
+console.log(friends);
+
+const pop = friends.pop();
+console.log(pop);
+console.log(friends);
+
+const shift = friends.shift();
+console.log(shift);
+console.log(friends);
+
+console.log(friends.indexOf("Jarek"));
+console.log(friends.indexOf("Mateusz"));
+
+console.log(friends.includes("Jarek"));
+console.log(friends.includes("Mateusz"));
+
+
