@@ -86,7 +86,7 @@ const mxArray = ["Marcin", 2012, friends];
 
 console.log(mxArray);
 
-// Basic Array Operations 
+// Basic Array Operations
 
 const friends = ["Marek", "Jarek", "Zygmunt"];
 
@@ -112,8 +112,8 @@ console.log(friends.indexOf("Mateusz"));
 
 console.log(friends.includes("Jarek"));
 console.log(friends.includes("Mateusz"));
-*/
-// Objects
+
+// Objects  /  Dot vs. Bracket Notation
 
 const mateusz = {
     firstName: "Mateusz",
@@ -125,4 +125,40 @@ const mateusz = {
 
 console.log(mateusz);
 
+console.log(mateusz.firstName);
+console.log(mateusz["firstName"]);
 
+let matInformation = prompt("What do you want know about Mateusz? Choose beetwen firstName, lastName, age, job, friends");
+
+if (mateusz[matInformation]) {
+    console.log(mateusz[matInformation]);
+} else matInformation = prompt("Bad request! Choose beetwen firstName, lastName, age, job, friends");
+
+mateusz.email = "mat@wp.pl";
+mateusz['phone'] = 12345678;
+
+console.log(mateusz);
+
+console.log(`${mateusz.firstName} has ${mateusz.friends.length} nad his best friend calls ${mateusz.friends[0]}`);
+*/
+// Object Methods
+
+const mateusz = {
+    firstName: "Mateusz",
+    lastName: "Ziebura",
+    birthYear: 1986,
+    job: "Junior Java Developer",
+    friends: ["Marek", "Jarek", "Zygmunt"],
+    isHasDrivingLicence: true,
+
+    calcAge: function () {
+        this.age = 2022 - this.birthYear;
+        return this.age;
+    }
+};
+
+
+// mateusz.calcAge();
+// console.log(mateusz);
+
+console.log(`${mateusz.firstName} is a ${mateusz.calcAge()} years old ${mateusz.job}, and he has ${mateusz.isHasDrivingLicence ? 'a' : 'no'} driving license`)
