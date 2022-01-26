@@ -25,6 +25,8 @@ document.querySelector('.check').addEventListener('click', () => {
     } else if (guess === secretNumber) {
       document.querySelector('.message').textContent = 'Game Over You Won!!!';
       gameOver = true;
+      document.querySelector('body').style.backgroundColor = '#60b347';
+      document.querySelector('.number').style.width = '30rem';
     } else if (guess > secretNumber) {
       score--;
       document.querySelector('.score').textContent = score;
