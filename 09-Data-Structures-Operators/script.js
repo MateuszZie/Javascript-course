@@ -16,6 +16,17 @@ const restaurant = {
     return [this.starterMenu[startIndex], this.mainMenu[mainIndex]];
   },
 
+  deliver: function ({
+    adress = 'Rybnik',
+    time = '22:00',
+    indexMainMenu = 0,
+    indexStratMenu = 3,
+  }) {
+    console.log(
+      `${this.mainMenu[indexMainMenu]} ${this.starterMenu[indexStratMenu]} will be delivred to ${adress} at ${time}`
+    );
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -32,21 +43,49 @@ const restaurant = {
   },
 };
 
-const [a, b, c] = [1, 2, 3];
-console.log(a, b, c);
+restaurant.deliver({
+  adress: 'Chabrowa',
+  indexMainMenu: 1,
+  time: '23:00',
+});
+restaurant.deliver({
+  adress: 'Earth',
+});
 
-let [start1, , start3] = restaurant.categories;
-console.log(start1, start3);
-const temp = start1;
-start1 = start3;
-start3 = temp;
-console.log(start1, start3);
+const { name: firstName, mainMenu, openingHours } = restaurant;
+console.log(firstName, mainMenu);
 
-[start1, start3] = [start3, start1];
-console.log(start1, start3);
+const {
+  fri: { open: p, close: cl },
+} = openingHours;
 
-const [d, e] = restaurant.order(2, 2);
-console.log(d, e);
+console.log(p, cl);
 
-const [f = 1, g = 1, h = 1] = [3, 5];
-console.log(f, g, h);
+const { open: timeopen = 10, cloed: closed = 22 } = openingHours.sat;
+console.log(timeopen, closed);
+
+let a = 2;
+let b = 5;
+const arr = { a: 10, b: 12 };
+({ a, b } = arr);
+console.log(a, b);
+
+// Destructuring Arrays
+// const [a, b, c] = [1, 2, 3];
+// console.log(a, b, c);
+
+// let [start1, , start3] = restaurant.categories;
+// console.log(start1, start3);
+// const temp = start1;
+// start1 = start3;
+// start3 = temp;
+// console.log(start1, start3);
+
+// [start1, start3] = [start3, start1];
+// console.log(start1, start3);
+
+// const [d, e] = restaurant.order(2, 2);
+// console.log(d, e);
+
+// const [f = 1, g = 1, h = 1] = [3, 5];
+// console.log(f, g, h);
