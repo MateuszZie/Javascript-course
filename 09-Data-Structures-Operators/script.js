@@ -27,6 +27,10 @@ const restaurant = {
     );
   },
 
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here you have your past with ${ing1}, ${ing2} and ${ing3}`);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -43,32 +47,56 @@ const restaurant = {
   },
 };
 
-restaurant.deliver({
-  adress: 'Chabrowa',
-  indexMainMenu: 1,
-  time: '23:00',
-});
-restaurant.deliver({
-  adress: 'Earth',
-});
+const arr = [5, 6, 7];
+const newArr = [1, 2, ...arr];
+console.log(newArr);
 
-const { name: firstName, mainMenu, openingHours } = restaurant;
-console.log(firstName, mainMenu);
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
 
-const {
-  fri: { open: p, close: cl },
-} = openingHours;
+const letter = ['a', 'b', 'c'];
+const newletter = [...letter, ' ', '.S'];
+console.log(newletter);
+console.log(...letter);
 
-console.log(p, cl);
+const copyNewRestaurant = { ...restaurant, owner: 'Mateusz' };
+console.log(copyNewRestaurant);
 
-const { open: timeopen = 10, cloed: closed = 22 } = openingHours.sat;
-console.log(timeopen, closed);
+const ingridiens = [
+  prompt('First Ingrident'),
+  prompt('Second Ingrident'),
+  prompt('Third Ingrident'),
+];
 
-let a = 2;
-let b = 5;
-const arr = { a: 10, b: 12 };
-({ a, b } = arr);
-console.log(a, b);
+restaurant.orderPasta(...ingridiens);
+
+// Destructuring Objects
+// restaurant.deliver({
+//   adress: 'Chabrowa',
+//   indexMainMenu: 1,
+//   time: '23:00',
+// });
+// restaurant.deliver({
+//   adress: 'Earth',
+// });
+
+// const { name: firstName, mainMenu, openingHours } = restaurant;
+// console.log(firstName, mainMenu);
+
+// const {
+//   fri: { open: p, close: cl },
+// } = openingHours;
+
+// console.log(p, cl);
+
+// const { open: timeopen = 10, cloed: closed = 22 } = openingHours.sat;
+// console.log(timeopen, closed);
+
+// let a = 2;
+// let b = 5;
+// const arr = { a: 10, b: 12 };
+// ({ a, b } = arr);
+// console.log(a, b);
 
 // Destructuring Arrays
 // const [a, b, c] = [1, 2, 3];
