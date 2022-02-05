@@ -52,6 +52,12 @@ const restaurant = {
   },
 };
 
+restaurant.numberOfGuess = 0;
+const numberOfGuess2 = restaurant.numberOfGuess ?? 10;
+console.log(numberOfGuess2);
+
+/*
+// Short Circuiting (&& and ||)
 console.log('Mateusz' || 0);
 console.log(0 || null || 'Mateusz');
 console.log(0 || null || undefined);
@@ -77,7 +83,7 @@ if (restaurant.orderP) {
 }
 console.log(0 && restaurant.orderP && restaurant.orderPiza('something'));
 
-/*
+
 //Rest Pattern and Parameters
 const [a, b, ...c] = [1, 2, 3, 4, 5];
 console.log(a, b, c);
