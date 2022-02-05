@@ -52,6 +52,14 @@ const restaurant = {
   },
 };
 
+const main = [...restaurant.starterMenu, ...restaurant.mainMenu];
+
+for (const item of main) console.log(item);
+
+for (const [i, elm] of main.entries()) console.log(`${i + 1}: ${elm}`);
+
+/*
+// Logical Assignment Operators
 const rest1 = {
   name: 'Pizza Hut',
   guessNumber: 0,
@@ -80,7 +88,7 @@ rest2.owner &&= 'Darek';
 
 console.log(rest1, rest2);
 
-/*
+
 // The Nullish Coalescing Operator (??)
 restaurant.numberOfGuess = 0;
 const numberOfGuess2 = restaurant.numberOfGuess ?? 10;
