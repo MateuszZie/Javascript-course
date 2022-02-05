@@ -52,6 +52,33 @@ const restaurant = {
   },
 };
 
+console.log('Mateusz' || 0);
+console.log(0 || null || 'Mateusz');
+console.log(0 || null || undefined);
+
+restaurant.numberOfGuess = 0;
+const numberOfGuess = restaurant.numberOfGuess ? restaurant.numberOfGuess : 10;
+console.log(numberOfGuess);
+const numberOfGuess2 = restaurant.numberOfGuess || 10;
+console.log(numberOfGuess2);
+
+console.log('Mateusz' && 0);
+console.log(0 && null && 'Mateusz');
+console.log(0 && null && undefined);
+console.log('Darek' && 'Jarek' && 'Mateusz');
+
+if (restaurant.orderPiza) {
+  restaurant.orderPiza('mushrooms');
+}
+restaurant.orderPiza && restaurant.orderPiza('something');
+
+if (restaurant.orderP) {
+  restaurant.orderPiza('mushrooms');
+}
+console.log(0 && restaurant.orderP && restaurant.orderPiza('something'));
+
+/*
+//Rest Pattern and Parameters
 const [a, b, ...c] = [1, 2, 3, 4, 5];
 console.log(a, b, c);
 const [pizza1, , pizza2, ...pizzas] = [
@@ -66,7 +93,7 @@ const ingridiens = ['mashrooms', 'garlic', 'pottatos', 'cucamber'];
 restaurant.orderPiza('mashrooms');
 restaurant.orderPiza('mashrooms', 'garlic', 'pottatos', 'cucamber');
 restaurant.orderPiza(...ingridiens);
-/*
+
 // The Spread Operator (...)
 console.log(parseInt(0.0000000005));
 const arr = [5, 6, 7];
