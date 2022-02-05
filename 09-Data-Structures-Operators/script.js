@@ -52,11 +52,41 @@ const restaurant = {
   },
 };
 
+const rest1 = {
+  name: 'Pizza Hut',
+  guessNumber: 0,
+};
+const rest2 = {
+  name: 'Pizza Hut',
+  owner: 'Mateusz',
+};
+
+// rest1.guessNumber = rest1.guessNumber || 10;
+// rest2.guessNumber = rest2.guessNumber || 10;
+
+// rest1.guessNumber ||= 10;
+// rest2.guessNumber ||= 10;
+
+rest1.guessNumber ??= 10;
+rest2.guessNumber ??= 10;
+
+console.log(rest1, rest2);
+
+// rest1.owner = rest1.owner && 'Darek';
+// rest2.owner = rest2.owner && 'Darek';
+
+rest1.owner &&= 'Darek';
+rest2.owner &&= 'Darek';
+
+console.log(rest1, rest2);
+
+/*
+// The Nullish Coalescing Operator (??)
 restaurant.numberOfGuess = 0;
 const numberOfGuess2 = restaurant.numberOfGuess ?? 10;
 console.log(numberOfGuess2);
 
-/*
+
 // Short Circuiting (&& and ||)
 console.log('Mateusz' || 0);
 console.log(0 || null || 'Mateusz');
