@@ -31,6 +31,11 @@ const restaurant = {
     console.log(`Here you have your past with ${ing1}, ${ing2} and ${ing3}`);
   },
 
+  orderPiza: function (mainIngridient, ...restIngridiens) {
+    console.log(mainIngridient);
+    console.log(restIngridiens);
+  },
+
   openingHours: {
     thu: {
       open: 12,
@@ -47,6 +52,23 @@ const restaurant = {
   },
 };
 
+const [a, b, ...c] = [1, 2, 3, 4, 5];
+console.log(a, b, c);
+const [pizza1, , pizza2, ...pizzas] = [
+  ...restaurant.starterMenu,
+  ...restaurant.mainMenu,
+];
+console.log(pizza1, pizza2, pizzas);
+
+const { sat, ...other } = { ...restaurant.openingHours };
+console.log(sat, other);
+const ingridiens = ['mashrooms', 'garlic', 'pottatos', 'cucamber'];
+restaurant.orderPiza('mashrooms');
+restaurant.orderPiza('mashrooms', 'garlic', 'pottatos', 'cucamber');
+restaurant.orderPiza(...ingridiens);
+/*
+// The Spread Operator (...)
+console.log(parseInt(0.0000000005));
 const arr = [5, 6, 7];
 const newArr = [1, 2, ...arr];
 console.log(newArr);
@@ -117,3 +139,4 @@ restaurant.orderPasta(...ingridiens);
 
 // const [f = 1, g = 1, h = 1] = [3, 5];
 // console.log(f, g, h);
+*/
