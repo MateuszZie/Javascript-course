@@ -54,8 +54,22 @@ const restaurant = {
   },
 };
 
-console.log(restaurant);
+if (restaurant.hours && restaurant.hours.mon) {
+  console.log(restaurant.hours.mon.open);
+}
+console.log(restaurant.hours.mon?.open);
 
+for (const day of weekDays) {
+  console.log(
+    `${day} we are open at ${restaurant.hours[day]?.open ?? 'close'}`
+  );
+}
+
+console.log(restaurant.order?.(2, 2));
+console.log(restaurant.orderRissoto?.(2, 2) ?? 'method dont exist');
+
+const zenek = [{ irstname: 'Zenek' }];
+console.log(zenek?.[0]?.firstname ?? 'User unknow');
 /*
 // Looping Arrays: The for-of Loop
 const main = [...restaurant.starterMenu, ...restaurant.mainMenu];
