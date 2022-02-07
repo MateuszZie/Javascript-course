@@ -54,6 +54,18 @@ const restaurant = {
   },
 };
 
+const keys = Object.keys(openingHours);
+console.log(keys);
+const values = Object.values(openingHours);
+console.log(values);
+const entries = Object.entries(openingHours);
+console.log(entries);
+
+for (const [day, { open, close }] of entries) {
+  console.log(`We are open ${day} from ${open} to ${close}`);
+}
+/*
+// Optional Chaining (?.)
 if (restaurant.hours && restaurant.hours.mon) {
   console.log(restaurant.hours.mon.open);
 }
@@ -70,7 +82,7 @@ console.log(restaurant.orderRissoto?.(2, 2) ?? 'method dont exist');
 
 const zenek = [{ irstname: 'Zenek' }];
 console.log(zenek?.[0]?.firstname ?? 'User unknow');
-/*
+
 // Looping Arrays: The for-of Loop
 const main = [...restaurant.starterMenu, ...restaurant.mainMenu];
 
