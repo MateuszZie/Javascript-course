@@ -53,7 +53,20 @@ const restaurant = {
     console.log(restIngridiens);
   },
 };
-
+const setExample = new Set(['Pizza', 'Pasta', 'Pizza', 'Risotto']);
+console.log(setExample);
+setExample.add('Bread');
+setExample.add('Bread');
+console.log(setExample);
+setExample.delete('Risotto');
+console.log(setExample);
+// setExample.clear();
+// console.log(setExample);
+for (const ing of setExample) {
+  console.log(ing);
+}
+/*
+// Looping Objects: Object Keys, Values, and Entries
 const keys = Object.keys(openingHours);
 console.log(keys);
 const values = Object.values(openingHours);
@@ -64,7 +77,7 @@ console.log(entries);
 for (const [day, { open, close }] of entries) {
   console.log(`We are open ${day} from ${open} to ${close}`);
 }
-/*
+
 // Optional Chaining (?.)
 if (restaurant.hours && restaurant.hours.mon) {
   console.log(restaurant.hours.mon.open);
