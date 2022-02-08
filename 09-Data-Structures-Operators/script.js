@@ -54,6 +54,25 @@ const restaurant = {
   },
 };
 
+const question = new Map([
+  ['question', 'What is the best programing language'],
+  [1, 'C'],
+  [2, 'java'],
+  [3, 'javaScript'],
+  ['correct', 2],
+  [true, 'Well done 🎉🎆'],
+  [false, 'Try Again!'],
+]);
+
+console.log(question.get('question'));
+for (const [key, value] of question.entries()) {
+  typeof key === 'number' && console.log(`${key}: ${value}`);
+}
+const answer = prompt('Chose correct number');
+
+console.log(question.get(question.get('correct') === Number(answer)));
+/*
+// Maps
 const rest = new Map();
 rest.set(1, 'first');
 rest.set('omeNam', 'second');
@@ -65,7 +84,7 @@ console.log(rest.set(3, 'four').set('five').size);
 const arr = [3, 5];
 rest.set(arr, 'Array');
 console.log(rest.get(arr));
-/*
+
 // Sets
 const setExample = new Set(['Pizza', 'Pasta', 'Pizza', 'Risotto']);
 console.log(setExample);
