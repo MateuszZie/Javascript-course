@@ -53,6 +53,20 @@ const restaurant = {
     console.log(restIngridiens);
   },
 };
+
+const rest = new Map();
+rest.set(1, 'first');
+rest.set('omeNam', 'second');
+rest.set([1, 2], "cant't reach");
+console.log(rest);
+
+console.log(rest.set(3, 'four').set('five').size);
+
+const arr = [3, 5];
+rest.set(arr, 'Array');
+console.log(rest.get(arr));
+/*
+// Sets
 const setExample = new Set(['Pizza', 'Pasta', 'Pizza', 'Risotto']);
 console.log(setExample);
 setExample.add('Bread');
@@ -65,7 +79,7 @@ console.log(setExample);
 for (const ing of setExample) {
   console.log(ing);
 }
-/*
+
 // Looping Objects: Object Keys, Values, and Entries
 const keys = Object.keys(openingHours);
 console.log(keys);
