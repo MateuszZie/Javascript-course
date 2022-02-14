@@ -64,8 +64,29 @@ const question = new Map([
   [false, 'Try Again!'],
 ]);
 const airline = 'TAP Air Portugal';
-const plane = 'A320';
+const plane = 'A320neo';
 
+console.log(airline.toLowerCase());
+console.log(airline.toUpperCase());
+
+const jonas = 'JoNaS';
+
+console.log(jonas[0].toUpperCase() + jonas.slice(1).toLowerCase());
+
+const badEmail = '   cOs@op.pL  \n';
+console.log(badEmail.toLowerCase().trim());
+const gb = '283,45£';
+console.log(gb.replace(',', '.').replace('£', '$'));
+
+const gate = 'All passangers going to door 23. 23 door open';
+console.log(gate.replaceAll('door', 'gate'));
+
+console.log(airline.includes('Air'));
+console.log(plane.startsWith('A32'));
+console.log(plane.endsWith('neo'));
+
+/*
+// Working With Strings - Part 1
 console.log(plane[0]);
 console.log(plane[1]);
 console.log(plane[2]);
@@ -94,7 +115,7 @@ const middlleSeat = function (seat) {
 middlleSeat('23E');
 middlleSeat('3A');
 middlleSeat('28B');
-/*
+
 // Maps: Iteration
 console.log(question.get('question'));
 for (const [key, value] of question.entries()) {
