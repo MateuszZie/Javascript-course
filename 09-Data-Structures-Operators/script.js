@@ -63,6 +63,46 @@ const question = new Map([
   [true, 'Well done 🎉🎆'],
   [false, 'Try Again!'],
 ]);
+
+const message = 'a+very+nice+string';
+console.log(message.split('+'));
+
+const mateusz = 'Mateusz Ziebura';
+
+const matArray = mateusz.split(' ');
+
+const matArr = ['Mr.', matArray[0], matArray[1].toUpperCase()];
+console.log(matArr.join(' '));
+
+const firstUp = function (names) {
+  const newNames = [];
+  for (const n of names.split(' ')) {
+    newNames.push(n.replace(n[0], n[0].toUpperCase()));
+  }
+  console.log(newNames.join(' '));
+};
+
+firstUp('mateusz artur zofia jadwiga');
+
+const mat = 'mateusz';
+console.log(mat.padStart(10, '+').padEnd(15, '+'));
+
+const creditCard = function (number) {
+  const num = number + '';
+  console.log(num.slice(-4).padStart(num.length, '*'));
+};
+
+creditCard(23432423445345);
+
+const planeInLine = function (n) {
+  console.log(`there are ${n} plane in line ${'✈️'.repeat(n)}`);
+};
+planeInLine(3);
+planeInLine(6);
+planeInLine(10);
+
+/*
+// Working With Strings - Part 2
 const airline = 'TAP Air Portugal';
 const plane = 'A320neo';
 
@@ -85,7 +125,6 @@ console.log(airline.includes('Air'));
 console.log(plane.startsWith('A32'));
 console.log(plane.endsWith('neo'));
 
-/*
 // Working With Strings - Part 1
 console.log(plane[0]);
 console.log(plane[1]);
