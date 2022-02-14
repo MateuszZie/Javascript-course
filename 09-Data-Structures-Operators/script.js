@@ -63,7 +63,39 @@ const question = new Map([
   [true, 'Well done 🎉🎆'],
   [false, 'Try Again!'],
 ]);
+const airline = 'TAP Air Portugal';
+const plane = 'A320';
 
+console.log(plane[0]);
+console.log(plane[1]);
+console.log(plane[2]);
+console.log('B340'[0]);
+
+console.log(airline.length);
+console.log(plane.length);
+console.log(airline.indexOf('r'));
+console.log(airline.lastIndexOf('r'));
+console.log(airline.indexOf('w'));
+console.log(airline.slice(4));
+console.log(airline.slice(4, 7));
+console.log(airline.slice(0, airline.indexOf(' ')));
+console.log(airline.slice(airline.lastIndexOf(' ') + 1));
+console.log(airline.slice(-2));
+console.log(airline.slice(1, -1));
+const middlleSeat = function (seat) {
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') {
+    console.log('You Have middle seat');
+  } else {
+    console.log('You Win!');
+  }
+};
+
+middlleSeat('23E');
+middlleSeat('3A');
+middlleSeat('28B');
+/*
+// Maps: Iteration
 console.log(question.get('question'));
 for (const [key, value] of question.entries()) {
   typeof key === 'number' && console.log(`${key}: ${value}`);
@@ -71,7 +103,7 @@ for (const [key, value] of question.entries()) {
 const answer = prompt('Chose correct number');
 
 console.log(question.get(question.get('correct') === Number(answer)));
-/*
+
 // Maps
 const rest = new Map();
 rest.set(1, 'first');
