@@ -4,6 +4,24 @@
 const flights =
   '_Delayed_Departure;fao93766109;txl2133758440;11:25+_Arrival;bru0943384722;fao93766109;11:45+_Delayed_Arrival;hel7439299980;fao93766109;12:05+_Departure;fao93766109;lis2323639855;12:30';
 
+const arrFlights = flights.replaceAll('_', ' ').replaceAll(';', ' ').split('+');
+const newArr = [];
+for (let flight of arrFlights) {
+  const innerArray = flight.slice(1).split(' ');
+  let output = '';
+  if (innerArray.length === 5) {
+    output += `🔴 ${innerArray[0]}`;
+  }
+  const size = innerArray.length;
+  output += ` ${innerArray[size - 4]} from ${innerArray[size - 3]
+    .slice(0, 3)
+    .toUpperCase()} to ${innerArray[size - 2]
+    .slice(0, 3)
+    .toUpperCase()} (${innerArray[size - 1].replace(':', 'h')})`;
+  newArr.push(output.padStart(44));
+}
+
+console.log(newArr.join('\n'));
 // Data needed for first part of the section
 
 const weekDays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
@@ -54,6 +72,8 @@ const restaurant = {
   },
 };
 
+/*
+// Working With Strings - Part 3
 const question = new Map([
   ['question', 'What is the best programing language'],
   [1, 'C'],
@@ -101,7 +121,6 @@ planeInLine(3);
 planeInLine(6);
 planeInLine(10);
 
-/*
 // Working With Strings - Part 2
 const airline = 'TAP Air Portugal';
 const plane = 'A320neo';
