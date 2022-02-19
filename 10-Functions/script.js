@@ -1,5 +1,27 @@
 'use strict';
 
+const greet = function (param) {
+  return function (name) {
+    console.log(`${param} ${name}`);
+  };
+};
+greet('Hey')('Mateusz');
+
+const greetings = greet('Hello');
+
+greetings('Mateusz');
+
+const arrow = param => {
+  return Myname => {
+    console.log(`${param} ${Myname}`);
+  };
+};
+arrow('Heyy')('Mateusz');
+const greetArrow = arrow('HoHo');
+greetArrow('Mateusz');
+
+/*
+// Functions Accepting Callback Functions
 const oneWorld = function (str) {
   return str.replace(/ /g, '').toLowerCase();
 };
