@@ -1,5 +1,31 @@
 'use strict';
 
+const oneWorld = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+const upperFirstWorld = function (str) {
+  const [firstWorld, ...other] = str.split(' ');
+  return firstWorld.toUpperCase() + ' ' + other.join(' ');
+};
+
+const transform = function (str, fn) {
+  console.log(`Orginal string: ${str}`);
+  console.log(`Converterd string: ${fn(str)}`);
+  console.log(`Created by: ${fn.name}`);
+};
+
+transform('JavaScript is the best', oneWorld);
+transform('JavaScript is the best', upperFirstWorld);
+
+const high5 = function () {
+  console.log('👏');
+};
+document.body.addEventListener('click', high5);
+
+['sads', 'dsds', 'dsds'].forEach(high5);
+
+/*
+// How Passing Arguments Works: Value vs. Reference
 const flightNum = 'L123';
 const passanger = {
   name: 'Mateusz',
@@ -26,7 +52,6 @@ newPesel(passanger);
 bookingSystem(flightNum, passanger);
 console.log(flightNum, passanger);
 
-/*
 // Default Parameters
 const bookings = [];
 
