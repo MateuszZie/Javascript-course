@@ -29,6 +29,40 @@ bookFromLufthansa.apply(eurowings, simpleArr);
 bookFromLufthansa.call(eurowings, ...simpleArr);
 console.log(eurowings);
 
+const bookEW = bookFromLufthansa.bind(eurowings);
+bookEW(456, 'Sylwia');
+
+const bookEW23 = bookFromLufthansa.bind(eurowings, 23);
+bookEW23('Paula');
+
+lufthansa.planes = 300;
+lufthansa.buyPlane = function () {
+  console.log(this);
+  this.planes++;
+  console.log(this.planes);
+};
+// lufthansa.buyPlane();
+
+document
+  .querySelector('.buy')
+  .addEventListener('click', lufthansa.buyPlane.bind(lufthansa));
+
+const tax = (tax, value) => value + value * tax;
+console.log(tax(0.1, 100));
+
+const vatPl = tax.bind(null, 0.23);
+console.log(vatPl(100));
+
+const nowyLad = function (tax) {
+  return function (value) {
+    return value + value * tax;
+  };
+};
+
+console.log(nowyLad(0.4)(100));
+const konf20 = nowyLad(0.2);
+console.log(konf20(100));
+
 /*
 // Functions Returning Functions
 const greet = function (param) {
