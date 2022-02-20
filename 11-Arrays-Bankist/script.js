@@ -71,8 +71,20 @@ const currencies = new Map([
   ['GBP', 'Pound sterling'],
 ]);
 
+currencies.forEach(function (value, key, map) {
+  console.log(`${key}: ${value}`);
+});
+
+const setArr = new Set(['USD', 'EUR', 'GBP', 'USD', 'EUR']);
+
+setArr.forEach(function (value, _, set) {
+  console.log(value);
+});
+
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+/*
+//Looping Arrays: forEach
 movements.forEach(function (mov, i, arr) {
   let ver;
   if (mov > 0) ver = 'Deposit';
