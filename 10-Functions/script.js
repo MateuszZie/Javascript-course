@@ -1,5 +1,36 @@
 'use strict';
 
+const lufthansa = {
+  arline: 'Lufthansa',
+  idata: 'LX',
+  bookings: [],
+  book(flightNumber, passName) {
+    console.log(
+      `${passName} booked a seat on ${this.arline} flght ${this.idata}${flightNumber}`
+    );
+    this.bookings.push({ flight: `${this.idata}${flightNumber}`, passName });
+  },
+};
+
+const eurowings = {
+  arline: 'Eurowings',
+  idata: 'EW',
+  bookings: [],
+};
+
+lufthansa.book(234, 'Mateusz');
+console.log(lufthansa);
+
+const bookFromLufthansa = lufthansa.book;
+bookFromLufthansa.call(eurowings, 123, 'Andrzej');
+
+const simpleArr = [987, 'Marta'];
+bookFromLufthansa.apply(eurowings, simpleArr);
+bookFromLufthansa.call(eurowings, ...simpleArr);
+console.log(eurowings);
+
+/*
+// Functions Returning Functions
 const greet = function (param) {
   return function (name) {
     console.log(`${param} ${name}`);
