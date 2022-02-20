@@ -1,5 +1,20 @@
 'use strict';
 
+const bookindSecure = function () {
+  let passNumber = 0;
+  return function () {
+    passNumber++;
+    console.log(`${passNumber} passangers`);
+  };
+};
+const booker = bookindSecure();
+
+booker();
+booker();
+booker();
+console.dir(booker);
+/*
+// Immediately Invoked Function Expressions (IIFE)
 (function () {
   console.log('This function will be call only once');
 })();
