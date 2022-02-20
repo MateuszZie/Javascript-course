@@ -73,8 +73,16 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-/////////////////////////////////////////////////
+movements.forEach(function (mov, i, arr) {
+  let ver;
+  if (mov > 0) ver = 'Deposit';
+  else if (mov < 0) ver = 'Withdraw';
+  console.log(`Transaction ${i + 1} ${ver} ${Math.abs(mov)}`);
+});
 
+/////////////////////////////////////////////////
+/*
+// Looping Arrays: forEach
 const arr = [20, 30, 60];
 console.log(arr[0]);
 console.log(arr.at(0));
