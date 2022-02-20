@@ -1,5 +1,13 @@
 'use strict';
 
+(function () {
+  console.log('This function will be call only once');
+})();
+(() => {
+  console.log('This function will be call only once');
+})();
+/*
+// The bind Method
 const lufthansa = {
   arline: 'Lufthansa',
   idata: 'LX',
