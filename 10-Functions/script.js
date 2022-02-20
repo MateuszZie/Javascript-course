@@ -1,5 +1,37 @@
 'use strict';
+let f;
 
+function g() {
+  const a = 20;
+  f = function () {
+    console.log(a * 2);
+  };
+}
+
+function h() {
+  const b = 50;
+  f = function () {
+    console.log(b * 2);
+  };
+}
+g();
+f();
+h();
+f();
+
+const boarding = function (n, wait) {
+  const perGroup = n / 3;
+  setTimeout(function () {
+    console.log(
+      `We start boarding ${n} passangers at 3 groups with ${perGroup} passangers each`
+    );
+  }, wait * 1000);
+  console.log(`We will start boardnig after ${wait} sec`);
+};
+
+boarding(180, 3);
+/*
+// Closures
 const bookindSecure = function () {
   let passNumber = 0;
   return function () {
