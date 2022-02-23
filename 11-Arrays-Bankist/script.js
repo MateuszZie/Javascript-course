@@ -64,7 +64,23 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+const displayMovments = function (movements) {
+  containerMovements.innerHTML = '';
 
+  movements.forEach(function (mov, i) {
+    const operation = mov > 0 ? 'deposit' : 'withdrawal';
+    const html = `        <div class="movements__row">
+    <div class="movements__type movements__type--${operation}">${
+      i + 1
+    } ${operation}</div>
+    <div class="movements__value">${mov}</div>
+  </div>`;
+    containerMovements.insertAdjacentHTML('afterbegin', html);
+  });
+};
+displayMovments(account1.movements);
+/*
+// forEach With Maps and Sets
 const currencies = new Map([
   ['USD', 'United States dollar'],
   ['EUR', 'Euro'],
