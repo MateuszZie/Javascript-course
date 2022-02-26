@@ -96,8 +96,25 @@ const setArr = new Set(['USD', 'EUR', 'GBP', 'USD', 'EUR']);
 setArr.forEach(function (value, _, set) {
   console.log(value);
 });
-
+*/
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+const eurToUsd = 1.1;
+
+const movementsUSD = movements.map(mov => {
+  return mov * eurToUsd;
+});
+
+console.log(movements);
+console.log(movementsUSD);
+
+const movementsDescriptions = movements.map(
+  (mov, i, arr) =>
+    `Movement ${i + 1}: You ${mov > 0 ? 'deposit' : 'withdraw'} ${Math.abs(
+      mov
+    )}`
+);
+console.log(movementsDescriptions);
 
 /*
 //Looping Arrays: forEach
