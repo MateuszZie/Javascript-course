@@ -91,6 +91,14 @@ const createUserName = function (accs) {
 };
 
 createUserName(accounts);
+
+const displayBallance = function (movements) {
+  labelBalance.textContent = `${movements.reduce(
+    (acc, mov) => acc + mov,
+    0
+  )} EUR`;
+};
+displayBallance(account1.movements);
 /*
 // forEach With Maps and Sets
 const currencies = new Map([
@@ -111,6 +119,18 @@ setArr.forEach(function (value, _, set) {
 */
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+const max = movements.reduce(
+  (acc, mov) => (acc > mov ? acc : mov),
+  movements[0]
+);
+const min = movements.reduce(
+  (acc, mov) => (acc < mov ? acc : mov),
+  movements[0]
+);
+console.log(min);
+
+/*
+// The filter Method
 const deposits = movements.filter(mov => mov > 0);
 const withdraws = movements.filter(mov => mov < 0);
 console.log(deposits);
