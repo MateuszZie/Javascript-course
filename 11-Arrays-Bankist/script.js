@@ -79,6 +79,18 @@ const displayMovments = function (movements) {
   });
 };
 displayMovments(account1.movements);
+
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUserName(accounts);
 /*
 // forEach With Maps and Sets
 const currencies = new Map([
@@ -98,7 +110,8 @@ setArr.forEach(function (value, _, set) {
 });
 */
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
+/*
+//The map Method
 const eurToUsd = 1.1;
 
 const movementsUSD = movements.map(mov => {
