@@ -64,6 +64,18 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+const createUserName = function (accs) {
+  accs.forEach(function (acc) {
+    acc.username = acc.owner
+      .toLowerCase()
+      .split(' ')
+      .map(name => name[0])
+      .join('');
+  });
+};
+
+createUserName(accounts);
+
 const displayMovments = function (movements) {
   containerMovements.innerHTML = '';
 
@@ -78,19 +90,6 @@ const displayMovments = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovments(account1.movements);
-
-const createUserName = function (accs) {
-  accs.forEach(function (acc) {
-    acc.username = acc.owner
-      .toLowerCase()
-      .split(' ')
-      .map(name => name[0])
-      .join('');
-  });
-};
-
-createUserName(accounts);
 
 const displayBallance = function (movements) {
   labelBalance.textContent = `${movements.reduce(
@@ -98,23 +97,42 @@ const displayBallance = function (movements) {
     0
   )} EUR`;
 };
-displayBallance(account1.movements);
 
-const displaySummary = function (movements) {
-  labelSumIn.textContent = `${movements
+const displaySummary = function (acc) {
+  labelSumIn.textContent = `${acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, dep) => acc + dep, 0)}€`;
   labelSumOut.textContent = `${Math.abs(
-    movements.filter(mov => mov < 0).reduce((acc, wit) => acc + wit, 0)
+    acc.movements.filter(mov => mov < 0).reduce((acc, wit) => acc + wit, 0)
   )}€`;
-  labelSumInterest.textContent = `${movements
+  labelSumInterest.textContent = `${acc.movements
     .filter(mov => mov > 0)
-    .map(dep => dep * 0.012)
+    .map(dep => (dep * acc.interestRate) / 100)
     .filter(int => int >= 1)
     .reduce((acc, int) => acc + int, 0)}€`;
 };
-displaySummary(account1.movements);
 
+let curentAccount;
+
+btnLogin.addEventListener('click', function (e) {
+  e.preventDefault();
+  curentAccount = accounts.find(
+    acc =>
+      acc.username === inputLoginUsername.value &&
+      acc.pin === Number(inputLoginPin.value)
+  );
+  if (curentAccount) {
+    containerApp.style.opacity = 100;
+    inputLoginPin.value = inputLoginUsername.value = '';
+    inputLoginPin.blur();
+    displayMovments(curentAccount.movements);
+    displayBallance(curentAccount.movements);
+    displaySummary(curentAccount);
+  }
+});
+
+/*
+// The find Method
 const owner = accounts.find(acc => acc.owner === 'Sarah Smith');
 console.log(owner);
 const ownerFroLoop = function (acccount) {
