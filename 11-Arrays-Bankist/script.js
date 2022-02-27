@@ -129,6 +129,9 @@ btnLogin.addEventListener('click', function (e) {
     containerApp.style.opacity = 100;
     inputLoginPin.value = inputLoginUsername.value = '';
     inputLoginPin.blur();
+    labelWelcome.textContent = `Welcome back, ${
+      curentAccount.owner.split(' ')[0]
+    }`;
     updateUi(curentAccount);
   }
 });
@@ -151,6 +154,22 @@ btnTransfer.addEventListener('click', function (e) {
   inputTransferAmount.value = inputTransferTo.value = '';
   inputTransferAmount.blur();
   updateUi(curentAccount);
+});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+  if (
+    curentAccount.username === inputCloseUsername.value &&
+    curentAccount.pin === Number(inputClosePin.value)
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.username === curentAccount.username
+    );
+    accounts.splice(index, 1);
+    containerApp.style.opacity = 0;
+  }
+  inputClosePin.value = inputCloseUsername.value = '';
+  inputClosePin.blur();
 });
 /*
 // The find Method
