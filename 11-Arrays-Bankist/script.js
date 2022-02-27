@@ -99,6 +99,21 @@ const displayBallance = function (movements) {
   )} EUR`;
 };
 displayBallance(account1.movements);
+
+const displaySummary = function (movements) {
+  labelSumIn.textContent = `${movements
+    .filter(mov => mov > 0)
+    .reduce((acc, dep) => acc + dep, 0)}€`;
+  labelSumOut.textContent = `${Math.abs(
+    movements.filter(mov => mov < 0).reduce((acc, wit) => acc + wit, 0)
+  )}€`;
+  labelSumInterest.textContent = `${movements
+    .filter(mov => mov > 0)
+    .map(dep => dep * 0.012)
+    .filter(int => int >= 1)
+    .reduce((acc, int) => acc + int, 0)}€`;
+};
+displaySummary(account1.movements);
 /*
 // forEach With Maps and Sets
 const currencies = new Map([
@@ -119,6 +134,8 @@ setArr.forEach(function (value, _, set) {
 */
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
+/*
+//The reduce Method
 const max = movements.reduce(
   (acc, mov) => (acc > mov ? acc : mov),
   movements[0]
