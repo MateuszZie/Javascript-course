@@ -114,6 +114,16 @@ const displaySummary = function (movements) {
     .reduce((acc, int) => acc + int, 0)}€`;
 };
 displaySummary(account1.movements);
+
+const owner = accounts.find(acc => acc.owner === 'Sarah Smith');
+console.log(owner);
+const ownerFroLoop = function (acccount) {
+  for (const acc of acccount) {
+    if (acc.owner === 'Sarah Smith') return acc;
+  }
+  return null;
+};
+console.log(ownerFroLoop(accounts));
 /*
 // forEach With Maps and Sets
 const currencies = new Map([
