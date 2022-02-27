@@ -171,6 +171,17 @@ btnClose.addEventListener('click', function (e) {
   inputClosePin.value = inputCloseUsername.value = '';
   inputClosePin.blur();
 });
+
+btnLoan.addEventListener('click', function (e) {
+  e.preventDefault();
+  const amount = Number(inputLoanAmount.value);
+  if (amount > 0 && curentAccount.movements.some(mov => mov >= amount * 0.1)) {
+    curentAccount.movements.push(amount);
+    updateUi(curentAccount);
+  }
+  inputLoanAmount.value = '';
+  inputLoanAmount.blur();
+});
 /*
 // The find Method
 const owner = accounts.find(acc => acc.owner === 'Sarah Smith');
@@ -201,6 +212,8 @@ setArr.forEach(function (value, _, set) {
 });
 */
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
+
+console.log(movements.every(mov => mov > -700));
 
 /*
 //The reduce Method
