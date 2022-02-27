@@ -76,10 +76,12 @@ const createUserName = function (accs) {
 
 createUserName(accounts);
 
-const displayMovments = function (movements) {
+const displayMovments = function (movements, sort = false) {
   containerMovements.innerHTML = '';
 
-  movements.forEach(function (mov, i) {
+  const movs = sort ? movements.slice().sort((a, b) => a - b) : movements;
+
+  movs.forEach(function (mov, i) {
     const operation = mov > 0 ? 'deposit' : 'withdrawal';
     const html = `        <div class="movements__row">
     <div class="movements__type movements__type--${operation}">${
@@ -135,6 +137,13 @@ btnLogin.addEventListener('click', function (e) {
     updateUi(curentAccount);
   }
 });
+let sorted = true;
+
+btnSort.addEventListener('click', function (e) {
+  e.preventDefault();
+  displayMovments(curentAccount.movements, sorted);
+  sorted = !sorted;
+});
 
 btnTransfer.addEventListener('click', function (e) {
   e.preventDefault();
@@ -183,6 +192,8 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.blur();
 });
 
+/*
+// flat and flatMap
 const arr = [[[1, 2], [3, 4], 5, 6], 7];
 console.log(arr.flat(2));
 
