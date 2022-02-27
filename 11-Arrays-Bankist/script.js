@@ -182,6 +182,20 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.value = '';
   inputLoanAmount.blur();
 });
+
+const arr = [[[1, 2], [3, 4], 5, 6], 7];
+console.log(arr.flat(2));
+
+console.log(
+  accounts
+    .map(acc => acc.movements)
+    .flat()
+    .reduce((acc, mov) => acc + mov, 0)
+);
+
+console.log(
+  accounts.flatMap(acc => acc.movements).reduce((acc, mov) => acc + mov, 0)
+);
 /*
 // The find Method
 const owner = accounts.find(acc => acc.owner === 'Sarah Smith');
@@ -212,7 +226,8 @@ setArr.forEach(function (value, _, set) {
 });
 */
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
+/*
+// some and every
 console.log(movements.every(mov => mov > -700));
 
 /*
