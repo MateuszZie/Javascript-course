@@ -320,3 +320,23 @@ console.log(fullArr);
 
 console.log(fullArr.join('-'));
 */
+const arr = [1, 2, 3, 4, 5];
+const arr2 = new Array(1, 2, 3, 4, 5);
+console.log(arr);
+console.log(arr2);
+const a = new Array(5);
+
+a.fill(1, 2, 4);
+console.log(a);
+
+const b = Array.from({ length: 5 }, () => 1);
+console.log(b);
+const c = Array.from({ length: 5 }, (_, i) => i * 2);
+console.log(c);
+
+labelBalance.addEventListener('click', function () {
+  const g = Array.from(document.querySelectorAll('.movements__value'), el =>
+    Number(el.textContent)
+  );
+  console.log(g);
+});
