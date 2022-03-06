@@ -252,6 +252,21 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+const isEven = num => num % 2 === 0;
+
+console.log(isEven(2));
+console.log(isEven(7));
+console.log(isEven(14));
+
+labelBalance.addEventListener('click', function () {
+  const monRows = [...document.querySelectorAll('.movements__row')];
+  monRows.forEach((mov, i) => {
+    if (i % 2 === 0) mov.style.backgroundColor = 'orange';
+    if (i % 3 === 0) mov.style.backgroundColor = 'blue';
+  });
+});
+/*
+Math and Rounding
 console.log(Math.sqrt(25));
 console.log(25 ** (1 / 2));
 console.log(8 ** (1 / 3));
