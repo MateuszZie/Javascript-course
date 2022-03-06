@@ -192,6 +192,56 @@ btnLoan.addEventListener('click', function (e) {
   inputLoanAmount.blur();
 });
 
+// sum all deposits
+console.log(
+  accounts
+    .flatMap(acc => acc.movements)
+    .filter(movements => movements > 0)
+    .reduce((acc, mov) => acc + mov, 0)
+);
+
+// num deposit >= 1000
+console.log(
+  accounts
+    .flatMap(acc => acc.movements)
+    .reduce((sum, cur) => (cur >= 1000 ? ++sum : sum), 0)
+);
+console.log(
+  accounts
+    .flatMap(acc => acc.movements)
+    .reduce(
+      (sums, curr) => {
+        curr > 0 ? (sums.deposit += curr) : (sums.withdraw += curr);
+        return sums;
+      },
+      {
+        deposit: 0,
+        withdraw: 0,
+      }
+    )
+);
+const text = 'this is a nice Title';
+const text2 = ' and this is   a NICE Title';
+const exceptions = ['and', 'the', 'a', 'an', 'for', 'to', 'but', 'at', 'by'];
+const converter = function (text) {
+  const capitalizeFirstLetter = txt => txt[0].toUpperCase() + txt.slice(1);
+  console.log(
+    capitalizeFirstLetter(
+      text
+        .trim()
+        .toLowerCase()
+        .split(' ')
+        .filter(word => word)
+        .map(txt =>
+          !exceptions.includes(txt) ? capitalizeFirstLetter(txt) : txt
+        )
+        .join(' ')
+    )
+  );
+};
+converter(text);
+converter(text2);
+
 /*
 // flat and flatMap
 const arr = [[[1, 2], [3, 4], 5, 6], 7];
@@ -319,7 +369,8 @@ const fullArr = arr.concat(arr2);
 console.log(fullArr);
 
 console.log(fullArr.join('-'));
-*/
+
+// More Ways of Creating and Filling Arrays
 const arr = [1, 2, 3, 4, 5];
 const arr2 = new Array(1, 2, 3, 4, 5);
 console.log(arr);
@@ -340,3 +391,4 @@ labelBalance.addEventListener('click', function () {
   );
   console.log(g);
 });
+*/
