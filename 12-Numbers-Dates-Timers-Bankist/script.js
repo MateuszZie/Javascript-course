@@ -22,8 +22,8 @@ const account1 = {
     '2020-04-01T10:17:24.185Z',
     '2020-05-08T14:11:59.604Z',
     '2020-05-27T17:01:17.194Z',
-    '2020-07-11T23:36:17.929Z',
-    '2020-07-12T10:51:36.790Z',
+    '2022-03-04T18:49:59.371Z',
+    '2022-03-05T12:01:20.894Z',
   ],
   currency: 'EUR',
   locale: 'pt-PT', // de-DE
@@ -42,8 +42,8 @@ const account2 = {
     '2020-01-25T14:18:46.235Z',
     '2020-02-05T16:33:06.386Z',
     '2020-04-10T14:43:26.374Z',
-    '2020-06-25T18:49:59.371Z',
-    '2020-07-26T12:01:20.894Z',
+    '2022-03-04T18:49:59.371Z',
+    '2022-03-05T12:01:20.894Z',
   ],
   currency: 'USD',
   locale: 'en-US',
@@ -80,12 +80,20 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 // Functions
-
 const dateToString = function (date = new Date()) {
   return `${date.getFullYear()}/${(date.getMonth() + 1)
     .toString()
     .padStart(2, 0)}/${date.getDate().toString().padStart(2, 0)}`;
 };
+
+const displaMovmentsDate = function (date) {
+  const dayAgo = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
+  if (dayAgo === 0) return 'Today';
+  if (dayAgo === 1) return 'Yesterday';
+  if (dayAgo <= 7) return dayAgo + ' days ago';
+  return dateToString(date);
+};
+
 const timeToString = function () {
   const now = new Date();
   return `, ${now.getHours().toString().padStart(2, 0)}:${now
@@ -111,7 +119,7 @@ const displayMovements = function (acc, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-    <div class="movements__date">${dateToString(new Date(mov[1]))}</div>
+    <div class="movements__date">${displaMovmentsDate(new Date(mov[1]))}</div>
         <div class="movements__value">${mov[0].toFixed(2)}€</div>
       </div>
     `;
