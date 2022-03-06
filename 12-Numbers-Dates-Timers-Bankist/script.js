@@ -251,7 +251,30 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+console.log(2 ** 53 - 1);
+console.log(Number.MAX_SAFE_INTEGER);
+console.log(2 ** 53 + 1);
+console.log(2 ** 53 + 2);
+console.log(2 ** 53 + 3);
 
+console.log(4353345454353454354345n);
+console.log(BigInt(345435));
+
+console.log(100n * 100n);
+
+const huge = 32423543367465879455234345646764654n;
+console.log(huge * BigInt(345345));
+console.log(20n > 15);
+console.log(20n < 15);
+console.log(20n === 20);
+console.log(typeof 20n);
+console.log(20n == 20);
+console.log(huge + ' is really BIG');
+
+console.log(8n / 3n);
+console.log(8n / 2n);
+/*
+// Numeric Separators
 console.log(860_450_000);
 console.log(34_55);
 console.log(Number('230_000'));
