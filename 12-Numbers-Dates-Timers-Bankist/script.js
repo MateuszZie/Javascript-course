@@ -251,6 +251,38 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
+const now = new Date();
+console.log(now);
+console.log(new Date('Mar 06 2022 15:50:36'));
+console.log(new Date('March 06, 2022'));
+console.log(new Date(account1.movementsDates[0]));
+console.log(new Date(2037, 10, 8, 15, 23, 42));
+console.log(new Date(2037, 10, 8));
+
+console.log(new Date(0));
+console.log(new Date(3 * 24 * 60 * 60 * 1000));
+
+const feature = new Date(2037, 10, 9, 15, 23, 42);
+console.log(feature);
+console.log(feature.getFullYear());
+console.log(feature.getMonth());
+console.log(feature.getDate());
+console.log(feature.getDay());
+console.log(feature.getHours());
+console.log(feature.getMinutes());
+console.log(feature.getSeconds());
+console.log(feature.getMilliseconds());
+console.log(feature.toISOString());
+console.log(feature.getTime());
+console.log(new Date(2141389422000));
+
+console.log(Date.now());
+
+feature.setFullYear(2400);
+console.log(feature);
+
+/*
+// Working with BigInt
 console.log(2 ** 53 - 1);
 console.log(Number.MAX_SAFE_INTEGER);
 console.log(2 ** 53 + 1);
