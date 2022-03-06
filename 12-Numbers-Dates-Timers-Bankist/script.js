@@ -252,6 +252,12 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+console.log(860_450_000);
+console.log(34_55);
+console.log(Number('230_000'));
+console.log(Number.parseInt('230_000'));
+/*
+// The Remainder Operator
 const isEven = num => num % 2 === 0;
 
 console.log(isEven(2));
