@@ -262,12 +262,14 @@ btnLoan.addEventListener('click', function (e) {
   const amount = Math.floor(inputLoanAmount.value);
 
   if (amount > 0 && currentAccount.movements.some(mov => mov >= amount * 0.1)) {
-    // Add movement
-    currentAccount.movements.push(amount);
-    currentAccount.movementsDates.push(new Date());
+    setTimeout(() => {
+      // Add movement
+      currentAccount.movements.push(amount);
+      currentAccount.movementsDates.push(new Date());
 
-    // Update UI
-    updateUI(currentAccount);
+      // Update UI
+      updateUI(currentAccount);
+    }, 2500);
   }
   inputLoanAmount.value = '';
 });
@@ -306,6 +308,16 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 // LECTURES
 
+const arr = [2, 3];
+const calc = setTimeout(
+  (arg1, arg2) => console.log(`${arg1} plus ${arg2} equal ${arg1 + arg2}`),
+  2000,
+  ...arr
+);
+
+if (arr[1] === 3) clearTimeout(calc);
+
+setInterval(() => console.log(new Date()), 1000);
 /*
 // Creating Dates
 const now = new Date();
