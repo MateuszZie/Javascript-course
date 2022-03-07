@@ -81,6 +81,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 /////////////////////////////////////////////////
 // Functions
 
+const formCur = function (value, locale, curency) {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: curency,
+  }).format(value);
+};
+
 const displaMovmentsDate = function (date, locale) {
   const dayAgo = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
   if (dayAgo === 0) return 'Today';
@@ -118,7 +125,11 @@ const displayMovements = function (acc, sort = false) {
       new Date(mov[1]),
       acc.locale
     )}</div>
-        <div class="movements__value">${mov[0].toFixed(2)}€</div>
+        <div class="movements__value">${formCur(
+          mov[0],
+          acc.locale,
+          acc.currency
+        )}</div>
       </div>
     `;
 
@@ -128,19 +139,19 @@ const displayMovements = function (acc, sort = false) {
 
 const calcDisplayBalance = function (acc) {
   acc.balance = acc.movements.reduce((acc, mov) => acc + mov, 0);
-  labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
+  labelBalance.textContent = formCur(acc.balance, acc.locale, acc.currency);
 };
 
 const calcDisplaySummary = function (acc) {
   const incomes = acc.movements
     .filter(mov => mov > 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumIn.textContent = `${incomes.toFixed(2)}€`;
+  labelSumIn.textContent = formCur(incomes, acc.locale, acc.currency);
 
   const out = acc.movements
     .filter(mov => mov < 0)
     .reduce((acc, mov) => acc + mov, 0);
-  labelSumOut.textContent = `${Math.abs(out).toFixed(2)}€`;
+  labelSumOut.textContent = formCur(Math.abs(out), acc.locale, acc.currency);
 
   const interest = acc.movements
     .filter(mov => mov > 0)
@@ -150,7 +161,7 @@ const calcDisplaySummary = function (acc) {
       return int >= 1;
     })
     .reduce((acc, int) => acc + int, 0);
-  labelSumInterest.textContent = `${interest.toFixed(2)}€`;
+  labelSumInterest.textContent = formCur(interest, acc.locale, acc.currency);
 };
 
 const createUsernames = function (accs) {
