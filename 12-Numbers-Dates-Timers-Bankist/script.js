@@ -80,18 +80,13 @@ const inputClosePin = document.querySelector('.form__input--pin');
 
 /////////////////////////////////////////////////
 // Functions
-const dateToString = function (date = new Date()) {
-  return `${date.getFullYear()}/${(date.getMonth() + 1)
-    .toString()
-    .padStart(2, 0)}/${date.getDate().toString().padStart(2, 0)}`;
-};
 
-const displaMovmentsDate = function (date) {
+const displaMovmentsDate = function (date, locale) {
   const dayAgo = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
   if (dayAgo === 0) return 'Today';
   if (dayAgo === 1) return 'Yesterday';
   if (dayAgo <= 7) return dayAgo + ' days ago';
-  return dateToString(date);
+  return new Intl.DateTimeFormat(locale).format(date);
 };
 
 const timeToString = function () {
@@ -119,7 +114,10 @@ const displayMovements = function (acc, sort = false) {
         <div class="movements__type movements__type--${type}">${
       i + 1
     } ${type}</div>
-    <div class="movements__date">${displaMovmentsDate(new Date(mov[1]))}</div>
+    <div class="movements__date">${displaMovmentsDate(
+      new Date(mov[1]),
+      acc.locale
+    )}</div>
         <div class="movements__value">${mov[0].toFixed(2)}€</div>
       </div>
     `;
@@ -185,12 +183,14 @@ currentAccount = account1;
 updateUI(currentAccount);
 containerApp.style.opacity = 100;
 
-labelDate.textContent = dateToString() + timeToString();
+const local = navigator.language;
+
+labelDate.textContent = new Intl.DateTimeFormat(local).format(new Date());
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
-  labelDate.textContent = dateToString() + timeToString();
+
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
@@ -202,6 +202,14 @@ btnLogin.addEventListener('click', function (e) {
       currentAccount.owner.split(' ')[0]
     }`;
     containerApp.style.opacity = 100;
+    labelDate.textContent = new Intl.DateTimeFormat(currentAccount.locale, {
+      minute: '2-digit',
+      hour: 'numeric',
+      day: 'numeric',
+      month: 'long',
+      weekday: 'long',
+      year: 'numeric',
+    }).format(new Date());
 
     // Clear input fields
     inputLoginUsername.value = inputLoginPin.value = '';
