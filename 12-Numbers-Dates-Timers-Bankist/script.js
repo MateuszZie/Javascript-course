@@ -188,20 +188,45 @@ const updateUI = function (acc) {
 
 ///////////////////////////////////////
 // Event handlers
-let currentAccount;
+let currentAccount, timer;
 // Fake loggin user
-currentAccount = account1;
-updateUI(currentAccount);
-containerApp.style.opacity = 100;
+// currentAccount = account1;
+// updateUI(currentAccount);
+// containerApp.style.opacity = 100;
 
-const local = navigator.language;
+// const local = navigator.language;
 
-labelDate.textContent = new Intl.DateTimeFormat(local).format(new Date());
+// labelDate.textContent = new Intl.DateTimeFormat(local).format(new Date());
+const getTime = function (time) {
+  labelTimer.textContent = `${String(Math.trunc(time / 60)).padStart(
+    2,
+    '0'
+  )}:${String(time % 60).padStart(2, '0')}`;
+};
+
+const statLogOutTimer = function () {
+  let time = 15;
+  getTime(time);
+  timer = setInterval(() => {
+    getTime(time);
+    time--;
+    labelTimer.textContent = `${String(Math.trunc(time / 60)).padStart(
+      2,
+      '0'
+    )}:${String(time % 60).padStart(2, '0')}`;
+    if (time === 0) {
+      containerApp.style.opacity = 0;
+      clearInterval(timer);
+      labelWelcome.textContent = 'Log in to get started';
+    }
+  }, 1000);
+};
 
 btnLogin.addEventListener('click', function (e) {
   // Prevent form from submitting
   e.preventDefault();
-
+  if (timer) clearInterval(timer);
+  statLogOutTimer();
   currentAccount = accounts.find(
     acc => acc.username === inputLoginUsername.value
   );
@@ -253,6 +278,8 @@ btnTransfer.addEventListener('click', function (e) {
 
     // Update UI
     updateUI(currentAccount);
+    clearInterval(timer);
+    statLogOutTimer();
   }
 });
 
@@ -272,6 +299,8 @@ btnLoan.addEventListener('click', function (e) {
     }, 2500);
   }
   inputLoanAmount.value = '';
+  clearInterval(timer);
+  statLogOutTimer();
 });
 
 btnClose.addEventListener('click', function (e) {
@@ -307,7 +336,8 @@ btnSort.addEventListener('click', function (e) {
 /////////////////////////////////////////////////
 /////////////////////////////////////////////////
 // LECTURES
-
+/*
+// Timers: setTimeout and setInterval
 const arr = [2, 3];
 const calc = setTimeout(
   (arg1, arg2) => console.log(`${arg1} plus ${arg2} equal ${arg1 + arg2}`),
