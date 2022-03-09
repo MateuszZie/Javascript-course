@@ -60,3 +60,32 @@ document
     // message.remove();
     message.parentElement.removeChild(message);
   });
+
+message.style.backgroundColor = 'red';
+message.style.width = '120%';
+
+console.log(message.style.backgroundColor);
+console.log(getComputedStyle(message).backgroundColor);
+console.log(getComputedStyle(message).height);
+message.style.height =
+  Number.parseFloat(getComputedStyle(message).height, 10) + 30 + 'px';
+console.log(message.style.height);
+
+document.documentElement.style.setProperty('--color-primary', 'orangered');
+const logo = document.querySelector('.nav__logo');
+console.log(logo.alt);
+console.log(logo.className);
+logo.alt = 'New name of Banking logo';
+console.log(logo.alt);
+console.log(logo.src);
+console.log(logo.getAttribute('src'));
+console.log(logo.desiner);
+console.log(logo.getAttribute('desiner'));
+console.log(logo.dataset.versionNumber);
+
+logo.classList.add('c', 'j');
+logo.classList.remove('j');
+logo.classList.toggle('c');
+logo.classList.toggle('c');
+console.log(logo.classList.contains('c'));
+logo.className = 'jonas';
