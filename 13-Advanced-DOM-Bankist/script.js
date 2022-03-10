@@ -30,6 +30,34 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+const btnScrollToo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollToo.addEventListener('click', function (e) {
+  const s1coods = section1.getBoundingClientRect();
+  // console.log(s1coods);
+  // console.log(e.target.getBoundingClientRect());
+  // console.log('curent position ', window.pageXOffset, window.pageYOffset);
+  // console.log(
+  //   'view port',
+  //   document.documentElement.clientHeight,
+  //   document.documentElement.clientWidth
+  // );
+
+  // window.scrollTo(
+  //   s1coods.left + window.pageXOffset,
+  //   s1coods.top + window.pageYOffset
+  // );
+  // window.scrollTo({
+  //   left: s1coods.left + window.pageXOffset,
+  //   top: s1coods.top + window.pageYOffset,
+  //   behavior: 'smooth',
+  // });
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+/*
+// Styles, Attributes and Classes
 console.log(document.documentElement);
 console.log(document.head);
 console.log(document.body);
@@ -89,3 +117,4 @@ logo.classList.toggle('c');
 logo.classList.toggle('c');
 console.log(logo.classList.contains('c'));
 logo.className = 'jonas';
+*/
