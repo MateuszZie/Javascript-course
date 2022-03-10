@@ -30,6 +30,19 @@ document.addEventListener('keydown', function (e) {
   }
 });
 
+const h1 = document.querySelector('h1');
+const mouseenterFunc = function () {
+  alert('EventListner: Reading headre');
+};
+
+h1.addEventListener('mouseenter', mouseenterFunc);
+
+setTimeout(() => h1.removeEventListener('mouseenter', mouseenterFunc), 5000);
+h1.onmouseenter = function () {
+  alert('mouseEnter: Reading headre');
+};
+/*
+// Implementing Smooth Scrolling
 const btnScrollToo = document.querySelector('.btn--scroll-to');
 const section1 = document.querySelector('#section--1');
 
