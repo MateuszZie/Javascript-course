@@ -29,6 +29,33 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+
+const btnScrollToo = document.querySelector('.btn--scroll-to');
+const section1 = document.querySelector('#section--1');
+
+btnScrollToo.addEventListener('click', function (e) {
+  section1.scrollIntoView({ behavior: 'smooth' });
+});
+
+// document.querySelectorAll('.nav__link').forEach(el => {
+//   el.addEventListener('click', function (e) {
+//     e.preventDefault();
+//     const id = el.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  e.preventDefault();
+  if (e.target.classList.contains('nav__link')) {
+    document
+      .querySelector(e.target.getAttribute('href'))
+      .scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+/*
+// Event Propagation in Practice
 const randNum = () => Math.trunc(Math.random() * 256);
 const randColor = () => `rgb(${randNum()},${randNum()},${randNum()})`;
 document.querySelector('.nav').addEventListener(
