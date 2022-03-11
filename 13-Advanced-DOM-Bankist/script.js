@@ -29,7 +29,28 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
-
+const randNum = () => Math.trunc(Math.random() * 256);
+const randColor = () => `rgb(${randNum()},${randNum()},${randNum()})`;
+document.querySelector('.nav').addEventListener(
+  'click',
+  function (e) {
+    this.style.backgroundColor = randColor();
+    console.log('Nav', e.target, e.currentTarget);
+    console.log(e.currentTarget === this);
+  },
+  true
+);
+document.querySelector('.nav__link').addEventListener('click', function (e) {
+  this.style.backgroundColor = randColor();
+  console.log('Link', e.target, e.currentTarget);
+  // e.stopPropagation();
+});
+document.querySelector('.nav__links').addEventListener('click', function (e) {
+  this.style.backgroundColor = randColor();
+  console.log('Links', e.target, e.currentTarget);
+});
+/*
+// Types of Events and Event Handlers
 const h1 = document.querySelector('h1');
 const mouseenterFunc = function () {
   alert('EventListner: Reading headre');
