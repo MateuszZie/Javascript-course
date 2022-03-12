@@ -58,6 +58,7 @@ const tabs = document.querySelectorAll('.operations__tab');
 const tabConetiner = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
 const navContainer = document.querySelector('.nav__links');
+const nav = document.querySelector('.nav');
 
 const changeNavOpacity = function (e, opacity) {
   console.log(e.target);
@@ -88,6 +89,13 @@ tabConetiner.addEventListener('click', e => {
   document
     .querySelector(`.operations__content--${target.dataset.tab}`)
     .classList.add('operations__content--active');
+});
+
+const initialCords = section1.getBoundingClientRect();
+
+window.addEventListener('scroll', function () {
+  if (window.scrollY > initialCords.top) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
 });
 /*
 // DOM Traversing
