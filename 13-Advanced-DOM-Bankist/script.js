@@ -57,8 +57,24 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
 const tabs = document.querySelectorAll('.operations__tab');
 const tabConetiner = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
+const navContainer = document.querySelector('.nav__links');
 
-console.log(tabContent);
+const changeNavOpacity = function (e, opacity) {
+  console.log(e.target);
+  const link = e.target;
+  if (link.classList.contains('nav__link')) {
+    const closeNav = link.closest('.nav');
+    const siblings = closeNav.querySelectorAll('.nav__link');
+    const logo = closeNav.querySelector('img');
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+navContainer.addEventListener('mouseover', changeNavOpacity.bind(0.5));
+navContainer.addEventListener('mouseout', changeNavOpacity.bind(1));
 
 tabConetiner.addEventListener('click', e => {
   const target = e.target.closest('.operations__tab');
