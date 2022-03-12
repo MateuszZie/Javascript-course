@@ -54,6 +54,32 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+const h1 = document.querySelector('h1');
+console.log(h1.querySelectorAll('.highlight'));
+console.log(h1.childNodes);
+console.log(h1.children);
+console.log(h1.firstChild);
+
+h1.firstElementChild.style.color = 'orange';
+h1.lastElementChild.style.color = 'black';
+
+console.log(h1.parentElement);
+console.log(h1.parentNode);
+h1.closest('header').style.backgroundColor = 'var(--color-primary-opacity)';
+h1.closest('h1').style.backgroundColor = 'var(--color-tertiary)';
+
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+
+console.log(h1.previousSibling);
+console.log(h1.nextSibling);
+
+[...h1.parentElement.children].forEach(el => {
+  if (el !== h1) {
+    el.style.transform = 'scale(0.5)';
+  }
+});
+
 /*
 // Event Propagation in Practice
 const randNum = () => Math.trunc(Math.random() * 256);
