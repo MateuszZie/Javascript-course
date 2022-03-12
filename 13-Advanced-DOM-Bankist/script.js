@@ -54,6 +54,27 @@ document.querySelector('.nav__links').addEventListener('click', function (e) {
   }
 });
 
+const tabs = document.querySelectorAll('.operations__tab');
+const tabConetiner = document.querySelector('.operations__tab-container');
+const tabContent = document.querySelectorAll('.operations__content');
+
+console.log(tabContent);
+
+tabConetiner.addEventListener('click', e => {
+  const target = e.target.closest('.operations__tab');
+
+  if (!target) return;
+
+  tabs.forEach(t => t.classList.remove('operations__tab--active'));
+  tabContent.forEach(t => t.classList.remove('operations__content--active'));
+
+  target.classList.add('operations__tab--active');
+  document
+    .querySelector(`.operations__content--${target.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
+/*
+// DOM Traversing
 const h1 = document.querySelector('h1');
 console.log(h1.querySelectorAll('.highlight'));
 console.log(h1.childNodes);
