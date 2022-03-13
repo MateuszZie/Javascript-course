@@ -60,6 +60,7 @@ const tabContent = document.querySelectorAll('.operations__content');
 const navContainer = document.querySelector('.nav__links');
 const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
+const sectionList = document.querySelectorAll('.section');
 
 const changeNavOpacity = function (e, opacity) {
   console.log(e.target);
@@ -106,6 +107,24 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 headerObserver.observe(header);
+
+const sectionsAnimation = function (entries, observe) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+  observe.unobserve(entry.target);
+};
+
+const sectionsObserver = new IntersectionObserver(sectionsAnimation, {
+  root: null,
+  threshold: 0.15,
+});
+sectionsObserver.unobserve;
+sectionList.forEach(sec => {
+  sectionsObserver.observe(sec);
+  sec.classList.add('section--hidden');
+});
 /*
 // Implementing a Sticky Navigation: The Scroll Event
 const initialCords = section1.getBoundingClientRect();
