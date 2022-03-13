@@ -59,6 +59,7 @@ const tabConetiner = document.querySelector('.operations__tab-container');
 const tabContent = document.querySelectorAll('.operations__content');
 const navContainer = document.querySelector('.nav__links');
 const nav = document.querySelector('.nav');
+const header = document.querySelector('.header');
 
 const changeNavOpacity = function (e, opacity) {
   console.log(e.target);
@@ -91,6 +92,22 @@ tabConetiner.addEventListener('click', e => {
     .classList.add('operations__content--active');
 });
 
+const stickyNav = function (entries, observer) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');
+  else nav.classList.remove('sticky');
+};
+
+const headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: `-${nav.getBoundingClientRect().height}px`,
+});
+
+headerObserver.observe(header);
+/*
+// Implementing a Sticky Navigation: The Scroll Event
 const initialCords = section1.getBoundingClientRect();
 
 window.addEventListener('scroll', function () {
