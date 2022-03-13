@@ -61,6 +61,7 @@ const navContainer = document.querySelector('.nav__links');
 const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const sectionList = document.querySelectorAll('.section');
+const imgToBlur = document.querySelectorAll('img[data-src]');
 
 const changeNavOpacity = function (e, opacity) {
   console.log(e.target);
@@ -120,11 +121,29 @@ const sectionsObserver = new IntersectionObserver(sectionsAnimation, {
   root: null,
   threshold: 0.15,
 });
-sectionsObserver.unobserve;
 sectionList.forEach(sec => {
   sectionsObserver.observe(sec);
   sec.classList.add('section--hidden');
 });
+
+const loadImage = function (entries, observe) {
+  const [entry] = entries;
+
+  if (!entry.isIntersecting) return;
+  const target = entry.target;
+  target.src = target.dataset.src;
+  target.addEventListener('load', () => target.classList.remove('lazy-img'));
+  observe.unobserve(target);
+};
+
+const imgObserver = new IntersectionObserver(loadImage, {
+  root: null,
+  threshold: 0,
+  rootMargin: '200px',
+});
+
+imgToBlur.forEach(img => imgObserver.observe(img));
+
 /*
 // Implementing a Sticky Navigation: The Scroll Event
 const initialCords = section1.getBoundingClientRect();
