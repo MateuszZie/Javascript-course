@@ -63,6 +63,15 @@ const header = document.querySelector('.header');
 const sectionList = document.querySelectorAll('.section');
 const imgToBlur = document.querySelectorAll('img[data-src]');
 const sldies = document.querySelectorAll('.slide');
+const dots = document.querySelector('.dots');
+sldies.forEach((_, i) => {
+  dots.insertAdjacentHTML(
+    'beforeend',
+    `<button class ='dots__dot'  data-slide=${i}></button>
+    `
+  );
+});
+const dotList = document.querySelectorAll('.dots__dot');
 
 const changeNavOpacity = function (e, opacity) {
   const link = e.target;
@@ -148,7 +157,13 @@ const slidePosition = function (currentSlide) {
   sldies.forEach((sl, i) => {
     sl.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
   });
+  dotList.forEach(dot => {
+    if (Number(dot.dataset.slide) === currSlide)
+      dot.classList.add('dots__dot--active');
+    else dot.classList.remove('dots__dot--active');
+  });
 };
+
 let currSlide = 0;
 slidePosition(currSlide);
 const maxSlides = sldies.length - 1;
@@ -177,6 +192,18 @@ document
 document
   .querySelector('.slider__btn--right')
   .addEventListener('click', rightSliderButton);
+
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'ArrowRight') rightSliderButton();
+  if (e.key === 'ArrowLeft') leftSliderButton();
+});
+
+dotList.forEach(dot => {
+  dot.addEventListener('click', function (e) {
+    currSlide = Number(e.target.dataset.slide);
+    slidePosition(currSlide);
+  });
+});
 
 /*
 // Implementing a Sticky Navigation: The Scroll Event
