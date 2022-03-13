@@ -62,9 +62,9 @@ const nav = document.querySelector('.nav');
 const header = document.querySelector('.header');
 const sectionList = document.querySelectorAll('.section');
 const imgToBlur = document.querySelectorAll('img[data-src]');
+const sldies = document.querySelectorAll('.slide');
 
 const changeNavOpacity = function (e, opacity) {
-  console.log(e.target);
   const link = e.target;
   if (link.classList.contains('nav__link')) {
     const closeNav = link.closest('.nav');
@@ -143,6 +143,40 @@ const imgObserver = new IntersectionObserver(loadImage, {
 });
 
 imgToBlur.forEach(img => imgObserver.observe(img));
+
+const slidePosition = function (currentSlide) {
+  sldies.forEach((sl, i) => {
+    sl.style.transform = `translateX(${100 * (i - currentSlide)}%)`;
+  });
+};
+let currSlide = 0;
+slidePosition(currSlide);
+const maxSlides = sldies.length - 1;
+
+const rightSliderButton = function () {
+  if (currSlide === maxSlides) {
+    currSlide = 0;
+  } else {
+    currSlide++;
+  }
+  slidePosition(currSlide);
+};
+
+const leftSliderButton = function () {
+  if (currSlide === 0) {
+    currSlide = maxSlides;
+  } else {
+    currSlide--;
+  }
+  slidePosition(currSlide);
+};
+
+document
+  .querySelector('.slider__btn--left')
+  .addEventListener('click', leftSliderButton);
+document
+  .querySelector('.slider__btn--right')
+  .addEventListener('click', rightSliderButton);
 
 /*
 // Implementing a Sticky Navigation: The Scroll Event
