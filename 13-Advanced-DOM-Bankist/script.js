@@ -205,6 +205,17 @@ dotList.forEach(dot => {
   });
 });
 
+document.addEventListener('DOMContentLoaded', function (e) {
+  console.log('DOMContentLoaded', e);
+});
+window.addEventListener('load', function (e) {
+  console.log('window load', e);
+});
+window.addEventListener('beforeunload', function (e) {
+  e.preventDefault();
+  console.log('unload', e);
+  e.returnValue = '';
+});
 /*
 // Implementing a Sticky Navigation: The Scroll Event
 const initialCords = section1.getBoundingClientRect();
