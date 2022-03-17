@@ -1,4 +1,5 @@
 'use strict';
+/*
 const Person = function (firstName, birthDay) {
   this.firstName = firstName;
   this.birthDay = birthDay;
@@ -37,3 +38,25 @@ Array.prototype.unique = function () {
 };
 
 console.log(arr.unique());
+*/
+
+class PersonCl {
+  constructor(firstName, birthYear) {
+    this.birthYear = birthYear;
+    this.firstName = firstName;
+  }
+
+  calcAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  }
+}
+
+const darek = new PersonCl('Darek', 1973);
+
+PersonCl.prototype.greet = function () {
+  console.log(`Hey ${this.firstName}`);
+};
+
+darek.greet();
+darek.calcAge();
+console.log(darek);
