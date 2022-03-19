@@ -1,17 +1,36 @@
 'use strict';
-/*
+
 const Person = function (firstName, birthDay) {
   this.firstName = firstName;
   this.birthDay = birthDay;
 };
 
-const mateusz = new Person('Mateusz', 1986);
-console.log(mateusz instanceof Person);
-console.log(mateusz);
-
 Person.prototype.calcAge = function () {
   console.log(new Date().getFullYear() - this.birthDay);
 };
+
+const Student = function (firstName, birthDay, course) {
+  Person.call(this, firstName, birthDay);
+  this.course = course;
+};
+
+Student.prototype = Object.create(Person.prototype);
+Student.prototype.intruduce = function () {
+  console.log(`Hey my name is ${this.firstName} i m study ${this.course}`);
+};
+const mike = new Student('Mike', 1999, 'Java Scrpit');
+console.dir(mike);
+mike.intruduce();
+mike.calcAge();
+Student.prototype.constructor = Student;
+
+console.log(mike instanceof Student);
+console.log(mike instanceof Person);
+console.log(mike instanceof Object);
+/*
+const mateusz = new Person('Mateusz', 1986);
+console.log(mateusz instanceof Person);
+console.log(mateusz);
 
 console.log(mateusz.calcAge());
 console.log(mateusz.__proto__ === Person.prototype);
@@ -105,7 +124,7 @@ console.log(account.latest);
 account.latest = 50;
 console.log(account.latest);
 
-*/
+
 
 const PersonProto = {
   init(name, birthYear) {
@@ -122,3 +141,4 @@ const steven = Object.create(PersonProto);
 
 steven.init('Mateusz', 1986);
 steven.calAge();
+*/
