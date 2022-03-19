@@ -145,7 +145,7 @@ account.latest = 50;
 console.log(account.latest);
 
 
-*/
+
 const PersonProto = {
   init(name, birthYear) {
     this.name = name;
@@ -177,3 +177,37 @@ jay.init('Jay', 2005, 'Java Scrpt');
 jay.intrudace();
 jay.calAge();
 console.log(jay);
+
+*/
+class Account {
+  constructor(owner, currency, pin) {
+    this.owner = owner;
+    this.currency = currency;
+    this.pin = pin;
+    this.movments = [];
+    this.locale = navigator.language;
+    console.log(`Hello ${owner} your account sucesfull created`);
+  }
+  deposit(val) {
+    this.movments.push(val);
+  }
+  withdraw(val) {
+    this.deposit(-val);
+  }
+  isLoanPosible(val) {
+    return true;
+  }
+  requesLoan(val) {
+    if (this.isLoanPosible(val)) {
+      this.deposit(val);
+      console.log(`You deposit ${val}`);
+    }
+  }
+}
+
+const acc1 = new Account('Mateusz', 'PLN', 1234);
+acc1.deposit(200);
+acc1.withdraw(100);
+acc1.requesLoan(300);
+console.log(acc1.isLoanPosible());
+console.log(acc1);
