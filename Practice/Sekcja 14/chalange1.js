@@ -25,3 +25,40 @@ mercedes.brake();
 mercedes.accelerate();
 mercedes.accelerate();
 mercedes.brake();
+
+// Chalange 2 ES6 class
+
+class CarCl {
+  constructor(make, speed) {
+    this.make = make;
+    this.speed = speed;
+  }
+
+  get speedUS() {
+    return this.speed / 1.6;
+  }
+  set speedUS(speed) {
+    this.speed = speed * 1.6;
+  }
+  accelerate() {
+    this.speed += 10;
+    console.log(`${this.make} going at ${this.speedUS} mi/h`);
+  }
+
+  brake() {
+    this.speed -= 5;
+    console.log(`${this.make} going at ${this.speedUS} mi/h`);
+  }
+}
+
+const ford = new CarCl('Ford', 120);
+
+console.log(ford);
+ford.accelerate();
+ford.brake();
+console.log(ford.speed, 'km/h');
+console.log(ford.speedUS, 'mi/h');
+ford.speedUS = 80;
+console.log(ford);
+ford.accelerate();
+ford.brake();
