@@ -38,7 +38,7 @@ Array.prototype.unique = function () {
 };
 
 console.log(arr.unique());
-*/
+
 
 class PersonCl {
   constructor(fullName, birthYear) {
@@ -104,3 +104,21 @@ const account = {
 console.log(account.latest);
 account.latest = 50;
 console.log(account.latest);
+
+*/
+
+const PersonProto = {
+  init(name, birthYear) {
+    this.name = name;
+    this.birthYear = birthYear;
+  },
+
+  calAge() {
+    console.log(new Date().getFullYear() - this.birthYear);
+  },
+};
+
+const steven = Object.create(PersonProto);
+
+steven.init('Mateusz', 1986);
+steven.calAge();
