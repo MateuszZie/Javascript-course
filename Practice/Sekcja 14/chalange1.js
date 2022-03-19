@@ -13,7 +13,32 @@ Car.prototype.brake = function () {
   this.speed -= 5;
   console.log(`${this.make} going at ${this.speed} km/h`);
 };
+// Chalange 3
+const EV = function (make, speed, charge) {
+  Car.call(this, make, speed);
+  this.charge = charge;
+};
 
+EV.prototype = Object.create(Car.prototype);
+EV.prototype.constructor = EV;
+const tesla = new EV('Tesla', 120, 23);
+console.dir(tesla);
+
+EV.prototype.chargeBattery = function (chargeTo) {
+  this.charge = chargeTo;
+};
+EV.prototype.accelerate = function () {
+  this.speed += 20;
+  this.charge -= 1;
+  console.log(
+    `${this.make} going at ${this.speed} km/h, with a charge of ${this.charge}%`
+  );
+};
+tesla.accelerate();
+tesla.brake();
+tesla.chargeBattery(30);
+tesla.accelerate();
+/*
 const bmw = new Car('BMW', 120);
 const mercedes = new Car('Mercedes', 95);
 
@@ -62,3 +87,4 @@ ford.speedUS = 80;
 console.log(ford);
 ford.accelerate();
 ford.brake();
+*/
