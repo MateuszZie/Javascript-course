@@ -1,5 +1,5 @@
 'use strict';
-
+/*
 const Person = function (firstName, birthDay) {
   this.firstName = firstName;
   this.birthDay = birthDay;
@@ -58,7 +58,7 @@ Array.prototype.unique = function () {
 
 console.log(arr.unique());
 
-
+*/
 class PersonCl {
   constructor(fullName, birthYear) {
     this.birthYear = birthYear;
@@ -89,6 +89,26 @@ PersonCl.hey = function () {
   console.log('Hey i m static');
 };
 
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    super(fullName, birthYear);
+    this.course = course;
+  }
+
+  intrudace() {
+    console.log(`Hey my name is ${this.fullName} i m study ${this.course}`);
+  }
+  calcAge() {
+    console.log('I m old');
+  }
+}
+
+const marek = new StudentCl('Marek H', 2001, 'Java Script');
+marek.intrudace();
+marek.calcAge();
+
+console.log(marek);
+/*
 PersonCl.hey();
 PersonCl.hey2();
 
