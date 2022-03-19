@@ -61,7 +61,17 @@ class PersonCl {
     if (name.includes(' ')) this._fullName = name;
     else alert(`${name} is not full Name`);
   }
+
+  static hey2() {
+    console.log('Hey i m static too');
+  }
 }
+PersonCl.hey = function () {
+  console.log('Hey i m static');
+};
+
+PersonCl.hey();
+PersonCl.hey2();
 
 const darek = new PersonCl('Darek Z', 1973);
 
