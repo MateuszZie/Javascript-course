@@ -58,7 +58,7 @@ Array.prototype.unique = function () {
 
 console.log(arr.unique());
 
-*/
+
 class PersonCl {
   constructor(fullName, birthYear) {
     this.birthYear = birthYear;
@@ -145,7 +145,7 @@ account.latest = 50;
 console.log(account.latest);
 
 
-
+*/
 const PersonProto = {
   init(name, birthYear) {
     this.name = name;
@@ -161,4 +161,19 @@ const steven = Object.create(PersonProto);
 
 steven.init('Mateusz', 1986);
 steven.calAge();
-*/
+
+const StudentProto = Object.create(PersonProto);
+const jay = Object.create(StudentProto);
+
+StudentProto.init = function (name, birthYear, course) {
+  PersonProto.init.call(this, name, birthYear);
+  this.course = course;
+};
+
+StudentProto.intrudace = function () {
+  console.log(`Hey my name is ${this.name} i m study ${this.course}`);
+};
+jay.init('Jay', 2005, 'Java Scrpt');
+jay.intrudace();
+jay.calAge();
+console.log(jay);
