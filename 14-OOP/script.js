@@ -183,25 +183,29 @@ class Account {
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this.pin = pin;
-    this.movments = [];
+    this._pin = pin;
+    this._movments = [];
     this.locale = navigator.language;
     console.log(`Hello ${owner} your account sucesfull created`);
   }
   deposit(val) {
-    this.movments.push(val);
+    this._movments.push(val);
   }
   withdraw(val) {
     this.deposit(-val);
   }
-  isLoanPosible(val) {
+  _isLoanPosible(val) {
     return true;
   }
   requesLoan(val) {
-    if (this.isLoanPosible(val)) {
+    if (this._isLoanPosible(val)) {
       this.deposit(val);
       console.log(`You deposit ${val}`);
     }
+  }
+
+  getMovments() {
+    return this._movments;
   }
 }
 
@@ -209,5 +213,5 @@ const acc1 = new Account('Mateusz', 'PLN', 1234);
 acc1.deposit(200);
 acc1.withdraw(100);
 acc1.requesLoan(300);
-console.log(acc1.isLoanPosible());
+console.log(acc1._isLoanPosible());
 console.log(acc1);
