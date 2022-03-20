@@ -180,32 +180,34 @@ console.log(jay);
 
 */
 class Account {
+  locale = navigator.language;
+  #movments = [];
+  #pin;
   constructor(owner, currency, pin) {
     this.owner = owner;
     this.currency = currency;
-    this._pin = pin;
-    this._movments = [];
-    this.locale = navigator.language;
+    this.#pin = pin;
+
     console.log(`Hello ${owner} your account sucesfull created`);
   }
   deposit(val) {
-    this._movments.push(val);
+    this.#movments.push(val);
   }
   withdraw(val) {
     this.deposit(-val);
   }
-  _isLoanPosible(val) {
+  #isLoanPosible(val) {
     return true;
   }
   requesLoan(val) {
-    if (this._isLoanPosible(val)) {
+    if (this.#isLoanPosible(val)) {
       this.deposit(val);
       console.log(`You deposit ${val}`);
     }
   }
 
   getMovments() {
-    return this._movments;
+    return this.#movments;
   }
 }
 
@@ -213,5 +215,4 @@ const acc1 = new Account('Mateusz', 'PLN', 1234);
 acc1.deposit(200);
 acc1.withdraw(100);
 acc1.requesLoan(300);
-console.log(acc1._isLoanPosible());
 console.log(acc1);
