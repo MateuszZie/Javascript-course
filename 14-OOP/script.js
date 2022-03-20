@@ -192,9 +192,11 @@ class Account {
   }
   deposit(val) {
     this.#movments.push(val);
+    return this;
   }
   withdraw(val) {
     this.deposit(-val);
+    return this;
   }
   #isLoanPosible(val) {
     return true;
@@ -203,6 +205,7 @@ class Account {
     if (this.#isLoanPosible(val)) {
       this.deposit(val);
       console.log(`You deposit ${val}`);
+      return this;
     }
   }
 
@@ -216,3 +219,5 @@ acc1.deposit(200);
 acc1.withdraw(100);
 acc1.requesLoan(300);
 console.log(acc1);
+acc1.deposit(1000).withdraw(500).requesLoan(10000).withdraw(5000);
+console.log(acc1.getMovments());
