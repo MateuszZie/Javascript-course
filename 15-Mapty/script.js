@@ -14,9 +14,16 @@ const inputElevation = document.querySelector('.form__input--elevation');
 navigator.geolocation.getCurrentPosition(
   function (position) {
     const cords = position.coords;
-    console.log(
-      `https://www.google.com/maps/@${cords.latitude},${cords.longitude}`
-    );
+    const posArr = [cords.latitude, cords.longitude];
+
+    const map = L.map('map').setView(posArr, 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    L.marker(posArr).addTo(map).bindPopup('Home sweet home').openPopup();
   },
   function () {
     alert("Can't get your current positon");
