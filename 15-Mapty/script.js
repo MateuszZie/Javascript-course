@@ -23,7 +23,22 @@ navigator.geolocation.getCurrentPosition(
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
-    L.marker(posArr).addTo(map).bindPopup('Home sweet home').openPopup();
+    map.on('click', function (mapEvent) {
+      const currPositon = [mapEvent.latlng.lat, mapEvent.latlng.lng];
+      L.marker(currPositon)
+        .addTo(map)
+        .bindPopup(
+          L.popup({
+            maxWidth: 250,
+            minWidth: 100,
+            autoClose: false,
+            closeOnClick: false,
+            className: 'running-popup',
+          })
+        )
+        .setPopupContent('Workout')
+        .openPopup();
+    });
   },
   function () {
     alert("Can't get your current positon");
