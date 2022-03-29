@@ -50,7 +50,16 @@ getCountry('poland');
 */
 const getCurentData = function (country) {
   const request = fetch(`https://restcountries.com/v3.1/name/${country}`).then(
-    response => response.json().then(data => renderCountry(data))
+    response =>
+      response
+        .json()
+        .then(data => {
+          renderCountry(data);
+          const [neighbour] = data[0].borders;
+          return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+        })
+        .then(response => response.json())
+        .then(data => renderCountry(data, 'neighbour'))
   );
 };
 getCurentData('poland');
