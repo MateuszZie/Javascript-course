@@ -5,6 +5,13 @@ const countriesContainer = document.querySelector('.countries');
 
 ///////////////////////////////////////
 
+const renderError = function (msg) {
+  countriesContainer.insertAdjacentText(
+    'beforeend',
+    `Can't load flag becouse ${msg} :(`
+  );
+};
+
 const renderCountry = function (data, neighbour = '') {
   const html = `<article class="country ${neighbour}">
   <img class="country__img" src="${data[0].flags.png}" />
@@ -23,7 +30,6 @@ const renderCountry = function (data, neighbour = '') {
   </div>
 </article>`;
   countriesContainer.insertAdjacentHTML('beforeend', html);
-  countriesContainer.style.opacity = 1;
 };
 
 /*
@@ -49,17 +55,20 @@ const getCountry = function (country) {
 getCountry('poland');
 */
 const getCurentData = function (country) {
-  const request = fetch(`https://restcountries.com/v3.1/name/${country}`).then(
-    response =>
-      response
-        .json()
-        .then(data => {
-          renderCountry(data);
-          const [neighbour] = data[0].borders;
-          return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
-        })
-        .then(response => response.json())
-        .then(data => renderCountry(data, 'neighbour'))
-  );
+  const request = fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => response.json())
+    .then(data => {
+      renderCountry(data);
+      const [neighbour] = data[0].borders;
+      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+    })
+    .then(response => response.json())
+    .then(data => renderCountry(data, 'neighbour'))
+    .catch(err => renderError(err.message))
+    .finally(() => {
+      countriesContainer.style.opacity = 1;
+    });
 };
-getCurentData('poland');
+btn.addEventListener('click', function () {
+  getCurentData('poland');
+});
