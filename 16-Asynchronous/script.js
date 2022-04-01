@@ -54,15 +54,27 @@ const getCountry = function (country) {
 };
 getCountry('poland');
 */
+
+const getJson = function (url, msgEror = 'Something goes wrong') {
+  return fetch(url).then(response => {
+    if (!response.ok) throw new Error(msgEror);
+    return response.json();
+  });
+};
 const getCurentData = function (country) {
-  const request = fetch(`https://restcountries.com/v3.1/name/${country}`)
-    .then(response => response.json())
+  getJson(
+    `https://restcountries.com/v3.1/name/${country}`,
+    `Country ${country} not found`
+  )
     .then(data => {
       renderCountry(data);
-      const [neighbour] = data[0].borders;
-      return fetch(`https://restcountries.com/v3.1/alpha/${neighbour}`);
+      const neighbour = data[0].borders?.[0];
+      if (!neighbour) throw new Error(`${country} don't have any neighbour`);
+      return getJson(
+        `https://restcountries.com/v3.1/alpha/${neighbour}`,
+        `Country ${neighbour} not found`
+      );
     })
-    .then(response => response.json())
     .then(data => renderCountry(data, 'neighbour'))
     .catch(err => renderError(err.message))
     .finally(() => {
@@ -70,5 +82,5 @@ const getCurentData = function (country) {
     });
 };
 btn.addEventListener('click', function () {
-  getCurentData('poland');
+  getCurentData('australia');
 });
