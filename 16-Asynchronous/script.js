@@ -97,8 +97,8 @@ Promise.resolve('Long promise').then(res => {
   console.log(res);
 });
 console.log('Test end');
-*/
 
+// Building a Simple Promise
 const lotteryPromise = new Promise(function (response, rejected) {
   console.log('Wait and check if you have lucky');
   setTimeout(function () {
@@ -138,3 +138,28 @@ wait(1)
 
 Promise.resolve('abc').then(res => console.log(res));
 Promise.reject(new Error('Problem!')).catch(err => console.error(err));
+*/
+
+const whereAmI = function () {
+  const getPosition = new Promise(function (response, rejected) {
+    navigator.geolocation.getCurrentPosition(response, rejected);
+  });
+  getPosition
+    .then(res => {
+      const { latitude: lat, longitude: lng } = res.coords;
+      return fetch(
+        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
+      );
+    })
+    .then(response => {
+      if (!response.ok) throw new Error('wrong adress');
+      return response.json();
+    })
+    .then(data => {
+      getCurentData(data.countryName);
+      console.log(`You are in ${data.city}, ${data.countryName}`);
+    })
+    .catch(err => console.error(`Somethng go wrong: `, err.message));
+};
+
+whereAmI();
