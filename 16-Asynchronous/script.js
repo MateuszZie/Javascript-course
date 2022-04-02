@@ -84,3 +84,14 @@ const getCurentData = function (country) {
 btn.addEventListener('click', function () {
   getCurentData('australia');
 });
+
+console.log('Test start');
+setTimeout(() => {
+  console.log('timeot 0 sec');
+}, 0);
+Promise.resolve('Short promise').then(res => console.log(res));
+Promise.resolve('Long promise').then(res => {
+  for (let i = 1; i < 1000000000; i++) {}
+  console.log(res);
+});
+console.log('Test end');
