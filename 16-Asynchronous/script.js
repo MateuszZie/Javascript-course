@@ -163,15 +163,21 @@ const whereAmI = function () {
 };
 
 const whereAmIAsyncAwat = async function () {
-  const pos = await new Promise(function (response, rejected) {
-    navigator.geolocation.getCurrentPosition(response, rejected);
-  });
-  const { latitude: lat, longitude: lng } = pos.coords;
-  const resGeo = await fetch(
-    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
-  );
-  const dataGeo = await resGeo.json();
+  try {
+    const pos = await new Promise(function (response, rejected) {
+      navigator.geolocation.getCurrentPosition(response, rejected);
+    });
+    const { latitude: lat, longitude: lng } = pos.coords;
+    const resGeo = await fetch(
+      `https://api.bigdatacloud.net/data/reverse-gcode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
+    );
+    if (!resGeo.ok) throw new Error(`Can't get country`);
+    const dataGeo = await resGeo.json();
 
-  getCurentData(dataGeo.countryName);
+    getCurentData(dataGeo.countryName);
+  } catch (err) {
+    renderError(err.message);
+    countriesContainer.style.opacity = 1;
+  }
 };
 whereAmIAsyncAwat();
