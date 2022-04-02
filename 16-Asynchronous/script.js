@@ -162,4 +162,16 @@ const whereAmI = function () {
     .catch(err => console.error(`Somethng go wrong: `, err.message));
 };
 
-whereAmI();
+const whereAmIAsyncAwat = async function () {
+  const pos = await new Promise(function (response, rejected) {
+    navigator.geolocation.getCurrentPosition(response, rejected);
+  });
+  const { latitude: lat, longitude: lng } = pos.coords;
+  const resGeo = await fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
+  );
+  const dataGeo = await resGeo.json();
+
+  getCurentData(dataGeo.countryName);
+};
+whereAmIAsyncAwat();
