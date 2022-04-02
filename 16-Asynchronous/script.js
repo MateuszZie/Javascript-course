@@ -85,6 +85,8 @@ btn.addEventListener('click', function () {
   getCurentData('australia');
 });
 
+// The Event Loop in Practice
+/*
 console.log('Test start');
 setTimeout(() => {
   console.log('timeot 0 sec');
@@ -95,3 +97,44 @@ Promise.resolve('Long promise').then(res => {
   console.log(res);
 });
 console.log('Test end');
+*/
+
+const lotteryPromise = new Promise(function (response, rejected) {
+  console.log('Wait and check if you have lucky');
+  setTimeout(function () {
+    if (Math.random() >= 0.5) {
+      response('You Win');
+    } else {
+      rejected(new Error('You lose'));
+    }
+  }, 2000);
+});
+
+lotteryPromise.then(res => console.log(res)).catch(err => console.error(err));
+
+const wait = function (sec) {
+  return new Promise(function (response) {
+    setTimeout(response, sec * 1000);
+  });
+};
+
+wait(1)
+  .then(() => {
+    console.log('timeout 1 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('timeout 2 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('timeout 3 sec');
+    return wait(1);
+  })
+  .then(() => {
+    console.log('timeout 4 sec');
+    return wait(1);
+  });
+
+Promise.resolve('abc').then(res => console.log(res));
+Promise.reject(new Error('Problem!')).catch(err => console.error(err));
