@@ -200,7 +200,8 @@ const whereAmIAsyncAwat = async function () {
   console.log(`3: End`);
 })();
 */
-
+// Running Promises in Parallel
+/*
 const get3countries = async function (c1, c2, c3) {
   try {
     const data = await Promise.all([
@@ -215,3 +216,46 @@ const get3countries = async function (c1, c2, c3) {
 };
 
 get3countries('poland', 'russia', 'germany');
+*/
+const get3countriesRace = async function (c1, c2, c3) {
+  try {
+    const data = await Promise.race([
+      getJson(`https://restcountries.com/v3.1/name/${c1}`),
+      getJson(`https://restcountries.com/v3.1/name/${c2}`),
+      getJson(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+const get3countriesAllSettled = async function (c1, c2, c3) {
+  try {
+    const data = await Promise.allSettled([
+      Promise.resolve('Success'),
+      Promise.reject('Error'),
+      Promise.resolve('Another Success'),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+const get3countriesAny = async function (c1, c2, c3) {
+  try {
+    const data = await Promise.any([
+      getJson(`https://restcountries.com/v3.1/me/${c1}`),
+      getJson(`https://restcountries.com/v3.1/name/${c2}`),
+      getJson(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+    console.log(data);
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+get3countriesRace('poland', 'russia', 'germany');
+get3countriesAllSettled('poland', 'russia', 'germany');
+get3countriesAny('poland', 'russia', 'germany');
