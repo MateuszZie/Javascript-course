@@ -182,7 +182,8 @@ const whereAmIAsyncAwat = async function () {
     throw new Error(err.message);
   }
 };
-
+// Returning Values from Async Functions
+/*
 // console.log(`1: Start`);
 // whereAmIAsyncAwat()
 //   .then(data => console.log(`2: ${data}`))
@@ -198,3 +199,19 @@ const whereAmIAsyncAwat = async function () {
   }
   console.log(`3: End`);
 })();
+*/
+
+const get3countries = async function (c1, c2, c3) {
+  try {
+    const data = await Promise.all([
+      getJson(`https://restcountries.com/v3.1/name/${c1}`),
+      getJson(`https://restcountries.com/v3.1/name/${c2}`),
+      getJson(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+    console.log(data.map(data => data[0].capital));
+  } catch (err) {
+    console.error(err.message);
+  }
+};
+
+get3countries('poland', 'russia', 'germany');
