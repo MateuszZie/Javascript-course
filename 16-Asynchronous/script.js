@@ -169,15 +169,32 @@ const whereAmIAsyncAwat = async function () {
     });
     const { latitude: lat, longitude: lng } = pos.coords;
     const resGeo = await fetch(
-      `https://api.bigdatacloud.net/data/reverse-gcode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
+      `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
     );
     if (!resGeo.ok) throw new Error(`Can't get country`);
     const dataGeo = await resGeo.json();
 
     getCurentData(dataGeo.countryName);
+    return `You are in ${dataGeo.countryName}`;
   } catch (err) {
     renderError(err.message);
     countriesContainer.style.opacity = 1;
+    throw new Error(err.message);
   }
 };
-whereAmIAsyncAwat();
+
+// console.log(`1: Start`);
+// whereAmIAsyncAwat()
+//   .then(data => console.log(`2: ${data}`))
+//   .catch(err => console.error(`2: ${err.message}`))
+//   .finally(() => console.log(`3: End`));
+(async function () {
+  try {
+    console.log(`1: Start`);
+    const message = await whereAmIAsyncAwat();
+    console.log(`2: ${message}`);
+  } catch (err) {
+    console.error(`2: ${err.message}`);
+  }
+  console.log(`3: End`);
+})();
