@@ -12,7 +12,6 @@ import * as ShopngCart from './shopingCart.js';
 console.log(ShopngCart);
 ShopngCart.addItem('bread', 5);
 console.log(ShopngCart.cart);
-*/
 
 const ShopngCart2 = (function () {
   const cart = [];
@@ -34,3 +33,18 @@ ShopngCart2.addItem('apple', 20);
 console.log(ShopngCart2);
 console.log(ShopngCart2.totalPrice);
 console.log(ShopngCart2.totatQuantity);
+*/
+
+import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+
+const state = {
+  cart: [{ product: 'bread', quantty: 5 }],
+  user: { loginIn: true },
+};
+
+const stateClone = Object.assign({}, state);
+const stateCloneDeep = cloneDeep(state);
+state.user.loginIn = false;
+console.log(state);
+console.log(stateClone);
+console.log(stateCloneDeep);
