@@ -1,3 +1,4 @@
+/*
 console.log('Export Module');
 console.log('Start Fetch');
 await fetch('https://jsonplaceholder.typicode.com/users');
@@ -18,3 +19,4 @@ export { totalPrice, totatQuantity as tq };
 export default function () {
   console.log(`I'm defalut`);
 }
+*/
