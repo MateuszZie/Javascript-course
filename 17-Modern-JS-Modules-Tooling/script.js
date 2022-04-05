@@ -1,7 +1,7 @@
-// import def, { addItem, cart, totalPrice as price, tq } from './shopingCart.js';
-// def();
-// addItem('bread', 5);
-// console.log(cart, price, tq);
+import def, { addItem, cart, totalPrice as price, tq } from './shopingCart.js';
+def();
+addItem('bread', 5);
+console.log(cart, price, tq);
 /*
 console.log('Import Module');
 
@@ -35,7 +35,7 @@ console.log(ShopngCart2.totalPrice);
 console.log(ShopngCart2.totatQuantity);
 */
 
-import cloneDeep from './node_modules/lodash-es/cloneDeep.js';
+import cloneDeep from 'lodash-es';
 
 const state = {
   cart: [{ product: 'bread', quantty: 5 }],

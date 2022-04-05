@@ -3,7 +3,7 @@ console.log('Export Module');
 console.log('Start Fetch');
 await fetch('https://jsonplaceholder.typicode.com/users');
 console.log('Stop Fetching');
-
+*/
 export const cart = [];
 
 export const addItem = function (product, quantity) {
@@ -19,4 +19,3 @@ export { totalPrice, totatQuantity as tq };
 export default function () {
   console.log(`I'm defalut`);
 }
-*/
