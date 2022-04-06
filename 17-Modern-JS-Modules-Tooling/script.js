@@ -48,3 +48,17 @@ state.user.loginIn = false;
 console.log(state);
 console.log(stateClone);
 console.log(stateCloneDeep);
+
+class Person {
+  gretings = 'Hey';
+  constructor(name) {
+    this.name = name;
+    console.log(`${this.gretings} ${this.name}`);
+  }
+}
+
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
+
+const mateusz = new Person('Mateusz');
+Promise.resolve('Test').then(x => console.log(x));
