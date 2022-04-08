@@ -1,4 +1,6 @@
-const budget = [
+'use strict';
+
+const budget = Object.freeze([
   { value: 250, description: 'Sold old TV 📺', user: 'jonas' },
   { value: -45, description: 'Groceries 🥑', user: 'jonas' },
   { value: 3500, description: 'Monthly salary 👩‍💻', user: 'jonas' },
@@ -7,44 +9,50 @@ const budget = [
   { value: -20, description: 'Candy 🍭', user: 'matilda' },
   { value: -125, description: 'Toys 🚂', user: 'matilda' },
   { value: -1800, description: 'New Laptop 💻', user: 'jonas' },
-];
+]);
 
-const limits = {
+const limits = Object.freeze({
   jonas: 1500,
   matilda: 100,
+});
+
+const getLimit = function (user) {
+  return limits[user] ?? 0;
 };
 
-const addExpense = function (value, description, user) {
+const addExpense = function (state, value, description, user) {
   if (!user) user = 'jonas';
-  user = user.toLowerCase();
+  const fixedUser = user.toLowerCase();
 
-  const limit = limits[user] ?? 0;
-
-  if (value <= limit) budget.push({ value: -value, description, user });
+  return value <= getLimit(fixedUser)
+    ? [...state, { value: -value, description, user: fixedUser }]
+    : state;
 };
-addExpense(10, 'Pizza 🍕');
-addExpense(100, 'Going to movies 🍿', 'Matilda');
-addExpense(200, 'Stuff', 'Jay');
-console.log(budget);
-
-const check = function () {
-  for (const entry of budget) {
-    const limit = limits[entry.user] ?? 0;
-
-    if (entry.value < -limit) entry.flag = 'limit';
-  }
-};
-check();
 
 console.log(budget);
 
-const bigExpenses = function (bigLimit) {
-  let output = '';
-  for (const entry of budget) {
-    if (entry.value <= -bigLimit) output += `${entry.description.slice(-2)} / `; // Emojis are 2 chars
-  }
-  output = output.slice(0, -2); // Remove last '/ '
-  console.log(output);
+const newBudget1 = addExpense(budget, 10, 'Pizza 🍕');
+const newBudget2 = addExpense(newBudget1, 10, 'Going to movies 🍿', 'Matilda');
+const newBudget3 = addExpense(newBudget2, 200, 'Stuff', 'Jay');
+console.log(newBudget3);
+
+const check = function (state) {
+  return state.map(obj =>
+    obj.value < -getLimit(obj.user) ? { ...obj, flag: 'limit' } : obj
+  );
+};
+const checketBudget = check(budget);
+const checketNewBudget = check(newBudget3);
+
+console.log(checketBudget);
+console.log(checketNewBudget);
+
+const bigExpenses = function (state, bigLimit) {
+  return state
+    .filter(entry => entry.value <= -bigLimit)
+    .map(entry => entry.description.slice(-2))
+    .join(' / ');
 };
 
-bigExpenses(100);
+console.log(bigExpenses(budget, 100));
+console.log(bigExpenses(newBudget3, 300));
