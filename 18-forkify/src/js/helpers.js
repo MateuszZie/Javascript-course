@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import { API_URL, TIMEOUT_SEC } from './config';
+import { TIMEOUT_SEC } from './config';
 
 const timeout = function (s) {
   return new Promise(function (_, reject) {
@@ -10,7 +10,7 @@ const timeout = function (s) {
 };
 
 export const getJSON = async function (url) {
-  const res = await Promise.race([fetch(`${API_URL}/${url}`), timeout(0.1)]);
+  const res = await Promise.race([fetch(url), timeout(TIMEOUT_SEC)]);
   const data = await res.json();
   if (!res.ok) throw new Error(data.message);
   return data.data;
