@@ -1,43 +1,23 @@
 import icon from 'url:../../img/icons.svg';
 import { Fraction } from 'fractional';
+import View from './view';
 
-class RecipeView {
-  #parentElement = document.querySelector('.recipe');
-  #data;
-  #errorMeassage = `Can't get this recipe try another one`;
-  #meesage = '';
-
-  render(data) {
-    this.#data = data;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', this.#markupRecipe());
-  }
-
-  renderSpinner() {
-    this.#clear();
-    const markup = `<div class="spinner">
-    <svg>
-      <use href="${icon}#icon-loader"></use>
-    </svg>
-  </div>`;
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
-  }
-
-  #clear() {
-    this.#parentElement.innerHTML = '';
-  }
+class RecipeView extends View {
+  _parentElement = document.querySelector('.recipe');
+  _errorMeassage = `Can't get this recipe try another one`;
+  _meesage = '';
 
   addHandlerRender(handler) {
     ['hashchange', 'load'].forEach(ev => window.addEventListener(ev, handler));
   }
 
-  #markupRecipe() {
+  _markupData() {
     return `<figure class="recipe__fig">
-      <img src="${this.#data.image}" alt="${
-      this.#data.title
+      <img src="${this._data.image}" alt="${
+      this._data.title
     }" class="recipe__img" crossorigin/>
       <h1 class="recipe__title">
-        <span>${this.#data.title}</span>
+        <span>${this._data.title}</span>
       </h1>
     </figure>
   
@@ -47,7 +27,7 @@ class RecipeView {
           <use href="${icon}#icon-clock"></use>
         </svg>
         <span class="recipe__info-data recipe__info-data--minutes">${
-          this.#data.cookingTime
+          this._data.cookingTime
         }</span>
         <span class="recipe__info-text">minutes</span>
       </div>
@@ -56,7 +36,7 @@ class RecipeView {
           <use href="${icon}#icon-users"></use>
         </svg>
         <span class="recipe__info-data recipe__info-data--people">${
-          this.#data.servings
+          this._data.servings
         }</span>
         <span class="recipe__info-text">servings</span>
   
@@ -89,7 +69,7 @@ class RecipeView {
     <div class="recipe__ingredients">
       <h2 class="heading--2">Recipe ingredients</h2>
       <ul class="recipe__ingredient-list">
-      ${this.#data.ingredients.map(this.#markuIngridents).join('')}
+      ${this._data.ingredients.map(this.#markuIngridents).join('')}
       </ul>
     </div>
   
@@ -98,13 +78,13 @@ class RecipeView {
       <p class="recipe__directions-text">
         This recipe was carefully designed and tested by
         <span class="recipe__publisher">${
-          this.#data.publisher
+          this._data.publisher
         }</span>. Please check out
         directions at their website.
       </p>
       <a
         class="btn--small recipe__btn"
-        href="${this.#data.sourceUrl}"
+        href="${this._data.sourceUrl}"
         target="_blank"
       >
         <span>Directions</span>
@@ -128,35 +108,6 @@ class RecipeView {
         ${ing.description}
       </div>
     </li>`;
-  }
-
-  renderError(message = this.#errorMeassage) {
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML(
-      'afterbegin',
-      `        <div class="error">
-    <div>
-      <svg>
-        <use href="${icon}#icon-alert-triangle"></use>
-      </svg>
-    </div>
-    <p>${message}</p>
-  </div>`
-    );
-  }
-
-  renderMessage(message = this.#meesage) {
-    const markup = `<div class="message">
-    <div>
-      <svg>
-        <use href="${icon}#icon-smile"></use>
-      </svg>
-    </div>
-    <p>
-      ${message}
-    </p>`;
-    this.#clear();
-    this.#parentElement.insertAdjacentHTML('afterbegin', markup);
   }
 }
 
