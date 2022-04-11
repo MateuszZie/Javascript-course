@@ -31,7 +31,7 @@ const controlSerachRecipe = async function () {
     const query = SearchView.getQuery();
     if (!query) return;
     await model.loadSearchRecipe(query);
-    ResultView.render(model.state.search.recipes);
+    ResultView.render(model.getSearchResaultPage());
   } catch {
     ResultView.renderError();
   }
