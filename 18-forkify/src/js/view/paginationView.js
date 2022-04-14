@@ -20,7 +20,6 @@ class PaginationView extends View {
     const maxPage = Math.ceil(
       this._data.recipes.length / this._data.resultPerPage
     );
-    console.log(this._data.recipes.length);
     if (curPage === 1 && maxPage > 1) {
       return `<button data-page="${
         curPage + 1
