@@ -68,6 +68,6 @@ export const addBookmarks = function (recipe) {
 
 export const deleteBookmarks = function (recipe) {
   recipe.kookmarked = false;
-  const index = state.bookmarks.indexOf(bookmark => (bookmark.id = recipe.id));
+  const index = state.bookmarks.indexOf(recipe);
   state.bookmarks.splice(index, 1);
 };
