@@ -10,9 +10,15 @@ export const state = {
     page: 1,
     resultPerPage: RES_MAX_PAGE,
   },
+  bookmarks: [],
 };
 
 export const loadRecipe = async function (id) {
+  const bookmarkRecipe = state.bookmarks.find(recipe => recipe.id === id);
+  if (bookmarkRecipe) {
+    state.recipe = bookmarkRecipe;
+    return;
+  }
   let { recipe } = await getJSON(`${API_URL}${id}`);
   state.recipe = {
     id: recipe.id,
@@ -28,6 +34,7 @@ export const loadRecipe = async function (id) {
 
 export const loadSearchRecipe = async function (query) {
   state.search.query = query;
+  state.search.page = 1;
   let { recipes } = await getJSON(`${API_URL}?search=${query}`);
 
   state.search.recipes = recipes.map(recipe => {
@@ -52,4 +59,15 @@ export const updateServings = function (newServings) {
     ing.quantity = (ing.quantity * newServings) / state.recipe.servings;
   });
   state.recipe.servings = newServings;
+};
+
+export const addBookmarks = function (recipe) {
+  recipe.kookmarked = true;
+  state.bookmarks.push(recipe);
+};
+
+export const deleteBookmarks = function (recipe) {
+  recipe.kookmarked = false;
+  const index = state.bookmarks.indexOf(bookmark => (bookmark.id = recipe.id));
+  state.bookmarks.splice(index, 1);
 };

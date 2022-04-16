@@ -52,9 +52,16 @@ const controlServings = async function (newServings) {
   RecipeView.update(model.state.recipe);
 };
 
+const controlBookmarks = async function () {
+  if (!model.state.recipe.kookmarked) model.addBookmarks(model.state.recipe);
+  else model.deleteBookmarks(model.state.recipe);
+  RecipeView.update(model.state.recipe);
+};
+
 const init = function () {
   RecipeView.addHandlerRender(controlRecipe);
   RecipeView.addHandlerServings(controlServings);
+  RecipeView.addHandlerBookmarks(controlBookmarks);
   SearchView.addHandlerSearch(controlSerachRecipe);
   PaginationView.addHandlerPagination(controlPagination);
 };
