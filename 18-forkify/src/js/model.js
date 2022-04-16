@@ -64,10 +64,23 @@ export const updateServings = function (newServings) {
 export const addBookmarks = function (recipe) {
   recipe.kookmarked = true;
   state.bookmarks.push(recipe);
+  persistBookmarks();
 };
 
 export const deleteBookmarks = function (recipe) {
   recipe.kookmarked = false;
   const index = state.bookmarks.indexOf(recipe);
   state.bookmarks.splice(index, 1);
+  persistBookmarks();
 };
+
+const persistBookmarks = function () {
+  localStorage.setItem('bookmarks', JSON.stringify(state.bookmarks));
+};
+
+const init = function () {
+  const bookmarks = localStorage.getItem('bookmarks');
+  if (bookmarks) state.bookmarks = JSON.parse(bookmarks);
+};
+
+init();
