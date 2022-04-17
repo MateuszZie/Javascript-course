@@ -15,3 +15,17 @@ export const getJSON = async function (url) {
   if (!res.ok) throw new Error(data.message);
   return data.data;
 };
+
+export const setJSON = async function (url, newRecipe) {
+  const res = await Promise.race([
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newRecipe),
+    }),
+    timeout(TIMEOUT_SEC),
+  ]);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.message);
+  return data.data;
+};

@@ -55,7 +55,7 @@ const controlServings = async function (newServings) {
 };
 
 const controlBookmarks = async function () {
-  if (!model.state.recipe.kookmarked) model.addBookmarks(model.state.recipe);
+  if (!model.state.recipe.bookmarked) model.addBookmarks(model.state.recipe);
   else model.deleteBookmarks(model.state.recipe);
   RecipeView.update(model.state.recipe);
   BookmarksView.render(model.state.bookmarks);
@@ -65,8 +65,15 @@ const controlInit = async function () {
   BookmarksView.render(model.state.bookmarks);
 };
 
-const cotrolAddRecipe = async function (data) {
-  console.log(data);
+const cotrolAddRecipe = async function (newRecipe) {
+  try {
+    await model.uploadRecipe(newRecipe);
+    RecipeView.renderSpinner();
+    BookmarksView.render(model.state.bookmarks);
+    RecipeView.render(model.state.recipe);
+  } catch {
+    RecipeView._errorMeassage();
+  }
 };
 
 const init = function () {

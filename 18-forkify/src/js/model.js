@@ -1,6 +1,6 @@
 import { async } from 'regenerator-runtime';
-import { getJSON } from './helpers';
-import { API_URL, RES_MAX_PAGE } from './config';
+import { getJSON, setJSON } from './helpers';
+import { API_URL, RES_MAX_PAGE, API_KEY } from './config';
 
 export const state = {
   recipe: {},
@@ -20,16 +20,7 @@ export const loadRecipe = async function (id) {
     return;
   }
   let { recipe } = await getJSON(`${API_URL}${id}`);
-  state.recipe = {
-    id: recipe.id,
-    title: recipe.title,
-    publisher: recipe.publisher,
-    sourceUrl: recipe.source_url,
-    image: recipe.image_url,
-    servings: recipe.servings,
-    cookingTime: recipe.cooking_time,
-    ingredients: recipe.ingredients,
-  };
+  setRecipe(recipe);
 };
 
 export const loadSearchRecipe = async function (query) {
@@ -62,13 +53,13 @@ export const updateServings = function (newServings) {
 };
 
 export const addBookmarks = function (recipe) {
-  recipe.kookmarked = true;
+  recipe.bookmarked = true;
   state.bookmarks.push(recipe);
   persistBookmarks();
 };
 
 export const deleteBookmarks = function (recipe) {
-  recipe.kookmarked = false;
+  recipe.bookmarked = false;
   const index = state.bookmarks.indexOf(recipe);
   state.bookmarks.splice(index, 1);
   persistBookmarks();
@@ -81,6 +72,49 @@ const persistBookmarks = function () {
 const init = function () {
   const bookmarks = localStorage.getItem('bookmarks');
   if (bookmarks) state.bookmarks = JSON.parse(bookmarks);
+};
+
+export const uploadRecipe = async function (newRecipe) {
+  const ingredients = [];
+  for (let [key, value] of Object.entries(newRecipe)) {
+    const ingredientArr = value.replaceAll(' ', '').split(',');
+    if (key.startsWith('ingredient') && ingredientArr.length === 3) {
+      const ingr = {
+        quantity: ingredientArr[0] ? +ingredientArr[0] : null,
+        unit: ingredientArr[1],
+        description: ingredientArr[2],
+      };
+      ingredients.push(ingr);
+    }
+  }
+  const recipe = {
+    title: newRecipe.title,
+    publisher: newRecipe.publisher,
+    source_url: newRecipe.sourceUrl,
+    image_url: newRecipe.image,
+    servings: newRecipe.servings,
+    cooking_time: newRecipe.cookingTime,
+    bookmarked: true,
+    ingredients,
+  };
+
+  const uploadedRecipe = await setJSON(`${API_URL}?key=${API_KEY}`, recipe);
+  setRecipe(uploadedRecipe.recipe);
+  addBookmarks(state.recipe);
+};
+
+const setRecipe = function (recipe) {
+  state.recipe = {
+    id: recipe.id,
+    title: recipe.title,
+    publisher: recipe.publisher,
+    sourceUrl: recipe.source_url,
+    image: recipe.image_url,
+    servings: recipe.servings,
+    cookingTime: recipe.cooking_time,
+    ingredients: recipe.ingredients,
+    ...(recipe.key && { key: recipe.key }),
+  };
 };
 
 init();
