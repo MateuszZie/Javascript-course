@@ -1,5 +1,5 @@
 import { async } from 'regenerator-runtime';
-import { getJSON, setJSON } from './helpers';
+import { AJAX } from './helpers';
 import { API_URL, RES_MAX_PAGE, API_KEY } from './config';
 
 export const state = {
@@ -19,14 +19,14 @@ export const loadRecipe = async function (id) {
     state.recipe = bookmarkRecipe;
     return;
   }
-  let { recipe } = await getJSON(`${API_URL}${id}`);
+  let { recipe } = await AJAX(`${API_URL}${id}?key=${API_KEY}`);
   setRecipe(recipe);
 };
 
 export const loadSearchRecipe = async function (query) {
   state.search.query = query;
   state.search.page = 1;
-  let { recipes } = await getJSON(`${API_URL}?search=${query}`);
+  let { recipes } = await AJAX(`${API_URL}?search=${query}&key=${API_KEY}`);
 
   state.search.recipes = recipes.map(recipe => {
     return {
@@ -34,6 +34,7 @@ export const loadSearchRecipe = async function (query) {
       title: recipe.title,
       publisher: recipe.publisher,
       image: recipe.image_url,
+      ...(recipe.key && { key: recipe.key }),
     };
   });
 };
@@ -98,7 +99,7 @@ export const uploadRecipe = async function (newRecipe) {
     ingredients,
   };
 
-  const uploadedRecipe = await setJSON(`${API_URL}?key=${API_KEY}`, recipe);
+  const uploadedRecipe = await AJAX(`${API_URL}?key=${API_KEY}`, recipe);
   setRecipe(uploadedRecipe.recipe);
   addBookmarks(state.recipe);
 };

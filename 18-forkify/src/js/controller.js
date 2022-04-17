@@ -71,6 +71,7 @@ const cotrolAddRecipe = async function (newRecipe) {
     RecipeView.renderSpinner();
     BookmarksView.render(model.state.bookmarks);
     RecipeView.render(model.state.recipe);
+    window.history.pushState(null, '', `#${model.state.recipe.id}`);
   } catch {
     RecipeView._errorMeassage();
   }
